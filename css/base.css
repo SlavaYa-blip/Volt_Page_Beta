@@ -1,0 +1,158 @@
+/* CSS Base Styles & Reset */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-body);
+    line-height: var(--lh-body);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-body);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    overflow-x: hidden;
+}
+
+/* Headings */
+h1 {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h1);
+    line-height: var(--lh-h1);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-h2);
+    line-height: var(--lh-h2);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+}
+
+/* Special styling class for large visual section headers (since branding defines h2: 16px, we need an elegant way to label sections) */
+.section-title {
+    font-size: var(--font-size-h2-large);
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--color-primary);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--color-secondary);
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+    font-weight: 500;
+}
+
+/* Paragraphs & Text */
+p {
+    margin-bottom: var(--space-4);
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+/* Links */
+a {
+    color: var(--color-text-link);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-text-link-hover);
+}
+
+/* Lists */
+ul, ol {
+    list-style: none;
+}
+
+/* Images & Media */
+img, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Selection */
+::selection {
+    background-color: var(--color-primary);
+    color: #FFFFFF;
+}
+
+/* Custom Scrollbar for Modern Aesthetics */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-border-subtle);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* Utilities */
+.container {
+    width: 100%;
+    max-width: var(--max-width-content);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+}
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.font-bold { font-weight: 700; }
+.font-medium { font-weight: 500; }
+.text-muted { color: var(--color-text-muted); }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    h1 {
+        font-size: var(--font-size-h1-mobile);
+    }
+    body {
+        font-size: 16px;
+    }
+}

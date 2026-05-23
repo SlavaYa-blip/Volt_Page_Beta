@@ -1,0 +1,98 @@
+/* Inputs and Form Control Styles */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+}
+
+.form-label {
+    font-family: var(--font-primary);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Base input element */
+.form-input, 
+.form-textarea,
+.form-select {
+    width: 100%;
+    font-family: var(--font-primary);
+    font-size: 16px;
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--input-border-radius); /* 0px */
+    outline: none;
+    box-shadow: var(--shadow-none); /* shadow: none */
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Hover State */
+.form-input:hover,
+.form-textarea:hover,
+.form-select:hover {
+    border-color: var(--color-primary);
+}
+
+/* Focus State */
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    border-color: var(--color-border-focus);
+    background-color: var(--input-bg);
+    box-shadow: 0 0 0 3px rgba(80, 35, 121, 0.15); /* Light focus glow, keeping input border radius 0 */
+}
+
+/* Textarea specific sizing */
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Error validation states */
+.form-group.has-error .form-input,
+.form-group.has-error .form-textarea {
+    border-color: var(--color-status-rejected);
+}
+
+.form-group.has-error .form-label {
+    color: var(--color-status-rejected);
+}
+
+.form-error-msg {
+    font-size: var(--font-size-small);
+    color: var(--color-status-rejected);
+    margin-top: var(--space-1);
+    font-weight: 500;
+}
+
+/* Checkbox & Radio layouts */
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+    cursor: pointer;
+}
+
+.form-check-input {
+    margin-top: 5px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 0px; /* Force 0px for checklist checkbox as well */
+    accent-color: var(--color-primary);
+    cursor: pointer;
+}
+
+.form-check-label {
+    font-size: var(--font-size-small);
+    color: var(--color-text-body);
+    user-select: none;
+}

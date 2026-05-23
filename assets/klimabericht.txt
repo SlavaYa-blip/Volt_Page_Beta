@@ -1,0 +1,335 @@
+
+## 1. BEVÖLKERUNG (Grundlage für alle Pro-Kopf-Werte)
+
+| Jahr | Einwohner:innen |
+|------|----------------|
+| 1990 | 74.497 |
+| 2014 | 84.277 |
+| 2015 | 84.455 |
+| 2016 | 85.216 |
+| 2017 | 86.324 |
+| 2018 | 87.584 |
+| 2019 | 88.605 |
+| 2020 | 89.119 |
+| 2021 | 90.370 |
+| 2022 | 90.100 |
+| 2023 | 93.795 |
+| 2024 | 93.317 |
+
+**Relevante Wechselwirkung:** Steigende Einwohnerzahl bei sinkendem Gesamtverbrauch = überproportional starke Pro-Kopf-Reduktion. Absolut- und Pro-Kopf-Werte zeigen daher unterschiedliche Trends und müssen beide dargestellt werden.
+
+---
+
+## 2. PRIMÄRENERGIEVERBRAUCH nach Energieträgern (MWh/a)
+
+| Energieträger | 1990 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 |
+|---|---|---|---|---|---|---|---|
+| Strom | 1.091.419 | 516.423 | 475.152 | 465.299 | 459.724 | 500.544 | 546.363 |
+| Heizöl | 343.539 | 75.201 | 84.586 | 84.586 | 82.560 | 97.233 | 95.962 |
+| Benzin | 371.989 | 278.884 | 244.214 | 241.629 | 241.629 | 197.591 | 255.795 |
+| Diesel | 376.467 | 540.661 | 461.363 | 470.934 | 470.727 | 515.560 | 518.107 |
+| Erdgas | 592.105 | 622.175 | 532.535 | 689.528 | 591.040 | 480.832 | 466.461 |
+| Fernwärme | 210.006 | 448.949 | 474.615 | 527.778 | 477.748 | 397.879 | 365.683 |
+| Biomasse | 5.958 | 22.923 | 22.716 | 22.716 | 22.171 | 22.378 | 22.489 |
+| Umweltwärme | 0 | 310 | 314 | 316 | 394 | 1.629 | 3.185 |
+| Biogase | 0 | 493 | 25.878 | 26.219 | 26.773 | 26.143 | 13.805 |
+| Flüssiggas | 0 | 5.938 | 4.805 | 4.466 | 4.466 | 0 | 4.571 |
+| Biodiesel | 0 | 44.289 | 54.649 | 48.748 | 48.748 | 45.726 | 45.465 |
+| Biobenzin | 0 | 18.962 | 17.551 | 17.678 | 17.678 | 18.147 | 17.827 |
+| **SUMME** | **2.991.484** | **2.575.207** | **2.398.379** | **2.599.898** | **2.443.659** | **2.303.663** | **2.355.711** |
+
+**Entwicklungen & Wechselwirkungen:**
+- Langfristig seit 2006 kontinuierlich sinkend — 2024 erstmals wieder leichter Anstieg (+2,3 % vs. 2023)
+- Umweltwärme hat sich 2024 fast verdoppelt (1.629 → 3.185 MWh/a) → Wärmepumpen-Signal
+- Biogase halbiert (26.143 → 13.805) → Lieferanteninsolvenz, Substitution durch Erdgas
+- Strom steigt trotz Effizienzfortschritten (Elektrifizierung: Wärmepumpen + E-Autos)
+- Benzin: starker Anstieg 2024 nach Tiefstwert 2023 (197.591 → 255.795) — auffällig und erklärungsbedürftig
+
+---
+
+## 3. ENDENERGIEVERBRAUCH nach Energieträgern (MWh/a)
+
+| Energieträger | 1990 | 2020 | 2021 | 2022 | 2023 | 2024 |
+|---|---|---|---|---|---|---|
+| Strom | 363.225 | 353.325 | 348.406 | 340.979 | 345.705 | 348.588 |
+| Heizöl | 290.398 | 71.693 | 71.693 | 69.975 | 82.412 | 82.633 |
+| Benzin | 323.497 | 208.303 | 206.099 | 206.099 | 168.536 | 210.947 |
+| Diesel | 345.495 | 386.982 | 395.010 | 394.837 | 432.442 | 401.777 |
+| Erdgas | 516.066 | 464.436 | 601.315 | 515.412 | 419.263 | 391.098 |
+| Fernwärme | 245.799 | 403.292 | 448.475 | 409.753 | 374.395 | 360.748 |
+| Biomasse | 5.251 | 20.404 | 20.404 | 19.915 | 20.100 | 20.200 |
+| Umweltwärme | 0 | 629 | 632 | 788 | 2.978 | 5.441 |
+| Biogase | 0 | 21.580 | 22.197 | 22.666 | 22.132 | 11.959 |
+| Flüssiggas | 0 | 4.020 | 3.736 | 3.736 | 0 | 3.824 |
+| Biodiesel | 0 | 32.054 | 27.394 | 27.394 | 25.696 | 27.834 |
+| Biobenzin | 0 | 9.509 | 9.805 | 9.805 | 10.065 | 10.033 |
+| **SUMME** | **2.089.732** | **1.976.225** | **2.155.165** | **2.021.359** | **1.903.724** | **1.875.083** |
+
+**Entwicklungen:**
+- 2024: −1,5 % vs. 2023 — leichte Verbesserung gesamt
+- Vs. 1990: −10,3 % absolut, aber bei +25 % Einwohnern — pro Kopf also deutlich besser
+- Heizöl seit Gasmangellage (2022) auf erhöhtem Niveau — war vor 2022 im Abwärtstrend
+- Biogase: starker Einbruch wegen Lieferanteninsolvenz
+
+---
+
+## 4. ENDENERGIEVERBRAUCH PRO EINWOHNER:IN nach Sektoren (MWh/EW/a)
+
+| Jahr | Strom | Wärme | Verkehr | SUMME |
+|------|-------|-------|---------|-------|
+| 1990 | 4,61 | 14,20 | 9,24 | 28,05 |
+| 2014 | 4,26 | 11,45 | 8,35 | 24,06 |
+| 2015 | 3,85 | 10,82 | 7,67 | 22,34 |
+| 2016 | 4,23 | 12,51 | 8,53 | 25,28 |
+| 2017 | 4,20 | 11,96 | 8,50 | 24,66 |
+| 2018 | 4,09 | 11,47 | 8,40 | 23,96 |
+| 2019 | 3,96 | 11,56 | 8,25 | 23,77 |
+| 2020 | 3,91 | 10,83 | 7,58 | 22,32 |
+| 2021 | 3,76 | 12,62 | 7,47 | 23,85 |
+| 2022 | 3,69 | 11,25 | 7,50 | 22,44 |
+| 2023 | 3,58 | 9,56 | 7,16 | 20,30 |
+| 2024 | 3,64 | 9,20 | 7,25 | 20,09 |
+
+**Gesamtreduktion 1990→2024: −28,4 %**
+
+**Wechselwirkungen:**
+- Wärme: stärkste absolute Einsparung (−35,2 % vs. 1990) — hauptsächlich Energieeffizienz + milde Winter
+- Strom: Trendumkehr 2024 (3,58 → 3,64) nach jahrelangem Rückgang → Elektrifizierungseffekt
+- Verkehr: kaum Fortschritt, 2024 wieder leicht steigend (7,16 → 7,25)
+- 2021: Ausreißer nach oben (Corona-Nachholeffekte + kalter Winter)
+
+---
+
+## 5. STROMVERBRAUCH PRO EINWOHNER:IN — Eigenproduktion vs. Bundesmix (MWh/EW/a)
+
+**Eigenproduktion im Bilanzkreis:**
+
+| Quelle | 1990 | 2022 | 2023 | 2024 |
+|---|---|---|---|---|
+| KWK Erdgas (SWG) | 0,688 | 1,183 | 0,917 | 1,195 |
+| KWK Erneuerbare (SWG) | 0 | 0,239 | 0,240 | 0,045 |
+| Photovoltaik (Stadt) | 0 | 0,229 | 0,229 | 0,254 |
+| Wasserkraft (Stadt) | 0 | 0,006 | 0,006 | 0,008 |
+| **Eigenproduktion gesamt** | **0,688** | **1,658** | **1,392** | **1,503** |
+
+**Bundesstrommix (Auswahl):**
+
+| Quelle | 1990 | 2022 | 2023 | 2024 |
+|---|---|---|---|---|
+| Kernenergie | 1,161 | 0,128 | 0,032 | 0,000 |
+| Braunkohle | 1,301 | 0,427 | 0,390 | 0,356 |
+| Steinkohle | 1,072 | 0,237 | 0,182 | 0,122 |
+| Erdgas | 0,273 | 0,293 | 0,348 | 0,352 |
+| Windkraft onshore | 0 | 0,368 | 0,529 | 0,506 |
+| Windkraft offshore | 0 | 0,092 | 0,107 | 0,117 |
+| Photovoltaik | 0 | 0,223 | 0,274 | 0,333 |
+| Biomasse | 0 | 0,164 | 0,195 | 0,194 |
+
+**Kritische Wechselwirkung:**
+- KWK EE (Biomethan) bricht 2024 komplett ein: 0,240 → 0,045 MWh/EW/a → **Substitution durch Erdgas-KWK** → treibt Emissionen
+- Anteil erneuerbarer Strom am Gesamtverbrauch: **2023: 45,91 % → 2024: 42,36 %** (Rückgang trotz PV-Zubau!)
+- Atomausstieg April 2023 klar sichtbar: 0,032 → 0,000
+- Emissionsfaktor Bundesstrommix: **2023: 472 g/kWh → 2024: 505 g/kWh** (+7 %) → verstärkt alle strombezogenen THG-Werte erheblich
+
+---
+
+## 6. PV-AUSBAU GIESSSEN (installierte Bruttoleistung kWp)
+
+| Jahr | kWp |
+|------|-----|
+| 2018 | 17.271 |
+| 2019 | 18.224 |
+| 2020 | 20.606 |
+| 2021 | 22.182 |
+| 2022 | 24.077 |
+| 2023 | 41.059 |
+| 2024 | 49.999 |
+
+**Zubau 2024: +8.940 kWp = +21,8 %**
+**Paradox:** Trotz starkem PV-Zubau sinkt der Anteil erneuerbarer Energien am Strommix — wegen Biomethan-Ausfall.
+
+---
+
+## 7. WÄRMEVERBRAUCH PRO EINWOHNER:IN (MWh/EW/a) — tatsächlich & witterungsbereinigt
+
+| Jahr | Wärme tatsächlich | Wärme witterungsbereinigt | Jahresdurchschnittstemp. |
+|------|-------------------|--------------------------|--------------------------|
+| 1990 | 14,20 (gesamt) | 14,62 | — |
+| 2021 | 13,52 | ~14,17 | kälter |
+| 2022 | 11,25 | ~13,29 | warm |
+| 2023 | 9,56 | ~11,97 | 11,18 °C (Rekord) |
+| 2024 | 9,20 | ~11,62 | 11,15 °C |
+
+**Eigenproduktion Fernwärme 2024:** −22,1 % vs. 2023 (wegen Biomethan-Ausfall in KWK)
+
+**Witterungsbereinigter Vergleich 2023→2024:** −11,8 % → Rückgang ist **real**, nicht nur temperaturbedingt
+
+**Wichtige Wechselwirkung:** Hohe Energiepreise + Effizienzmaßnahmen erklären die Einsparung — nicht allein das Wetter.
+
+---
+
+## 8. THG-EMISSIONEN (BISKO) — nach Energieträgern (t/a)
+
+| Energieträger | 1990 | 2020 | 2021 | 2022 | 2023 | 2024 |
+|---|---|---|---|---|---|---|
+| Strom | 316.732 | 154.756 | 152.602 | 149.349 | 163.173 | 176.037 |
+| Heizöl | 92.927 | 22.798 | 22.798 | 22.252 | 26.207 | 25.864 |
+| Benzin | 106.832 | 67.098 | 66.380 | 66.380 | 54.282 | 73.131 |
+| Diesel | 107.705 | 126.462 | 129.110 | 129.054 | 141.345 | 142.385 |
+| Erdgas | 132.629 | 114.738 | 148.570 | 127.352 | 103.613 | 100.546 |
+| Fernwärme | 67.380 | 80.153 | 84.490 | 80.790 | 68.094 | 62.068 |
+| **SUMME** | **824.392** | **574.216** | **611.373** | **582.649** | **563.227** | **588.079** |
+
+**Entwicklung BISKO gesamt:**
+- 2024 vs. 2023: **+4,4 %** (von 563.227 auf 588.079 t)
+- 2024 vs. 1990: **−28,7 %**
+- Pro Kopf 1990: 11,1 t/EW → 2024: 6,3 t/EW = **−43,2 %**
+
+**Kritische Wechselwirkung Strom:**
+- Verbrauch stieg moderat, aber Emissionen sprangen stark: +7,9 % (163.173 → 176.037 t)
+- Ursache: Emissionsfaktor 472 → 505 g/kWh (+7 %)
+- **Strukturelles Problem:** Lokale Effizienz kann durch nationalen Strommix zunichte gemacht werden
+
+---
+
+## 9. THG-EMISSIONEN nach Verbrauchssektoren 2023 vs. 2024 (BISKO)
+
+| Sektor | 2023 (t) | 2024 (t) | Anteil 2024 | Veränderung |
+|--------|----------|----------|-------------|-------------|
+| Verkehr | 206.608 | 226.979 | **39 %** | **+9,86 %** |
+| Haushalte | 143.004 | 149.347 | 25 % | +4,4 % |
+| GHD | 130.938 | 129.661 | 22 % | −1,0 % |
+| Industrie | 75.114 | 74.777 | 13 % | −0,4 % |
+| Kommunale Liegenschaften | 7.564 | 7.317 | 1 % | −3,3 % |
+| **SUMME** | **563.227** | **588.079** | **100 %** | **+4,4 %** |
+
+**Wechselwirkungen:**
+- Verkehr ist einziger Sektor mit +10 % — treibt den Gesamtanstieg
+- Kommunale Liegenschaften: kleinster Sektor, aber politisch direkt steuerbar
+- GHD und Industrie leicht rückläufig — möglicherweise wirtschaftliche Effekte
+
+---
+
+## 10. THG-EMISSIONEN PRO EINWOHNER:IN — Regionalbilanz (t/EW/a)
+
+| Jahr | Strom | Wärme | Verkehr | SUMME |
+|------|-------|-------|---------|-------|
+| 1990 | 3,62 | 3,93 | 3,09 | 10,64 |
+| 2015 | 1,56 | 2,46 | 2,42 | 6,44 |
+| 2019 | 1,34 | 2,64 | 2,60 | 6,58 |
+| 2020 | 1,25 | 2,46 | 2,30 | 6,01 |
+| 2021 | 1,17 | 2,83 | 2,28 | 6,28 |
+| 2022 | 1,23 | 2,56 | 2,28 | 6,07 |
+| 2023 | 1,29 | 2,11 | 2,19 | 5,59 |
+| 2024 | 1,43 | 1,93 | 2,42 | 5,78 |
+
+**2024 vs. 1990 nach Sektor:**
+- Strom: −60,5 %
+- Wärme: −50,9 %
+- Verkehr: −21,6 % ← mit Abstand geringste Reduktion
+
+---
+
+## 11. THG-EMISSIONEN PRO EINWOHNER:IN — witterungsbereinigt (t/EW/a)
+
+| Jahr | Strom | Wärme | Verkehr | SUMME |
+|------|-------|-------|---------|-------|
+| 1990 | 3,62 | 4,50 | 3,09 | 11,21 |
+| 2020 | 1,25 | 2,95 | 2,30 | 6,50 |
+| 2021 | 1,16 | 2,97 | 2,28 | 6,41 |
+| 2022 | 1,23 | 3,11 | 2,28 | 6,62 |
+| 2023 | 1,29 | 2,62 | 2,19 | 6,09 |
+| 2024 | 1,43 | 2,42 | 2,42 | 6,27 |
+
+**Vergleich tatsächlich vs. witterungsbereinigt 2024:**
+- Wärme tatsächlich: 1,93 t/EW — bereinigt: 2,42 t/EW
+- Differenz zeigt: Warmes Wetter "schenkt" ca. 0,49 t/EW Scheinreduktion im Wärmesektor
+
+---
+
+## 12. ZIELPFAD THG-NEUTRALITÄT 2035 (Regionalbilanz, t/EW/a)
+
+| Jahr | Strom | Wärme | Verkehr | SUMME | THG-Einsparung |
+|------|-------|-------|---------|-------|----------------|
+| 1990 | 3,621 | 3,935 | 3,087 | 10,64 | 0 % |
+| 2000 | 2,972 | 4,089 | 3,410 | 10,47 | 1,6 % |
+| 2010 | 2,344 | 3,174 | 2,523 | 8,04 | 24,4 % |
+| 2015 | 1,556 | 2,460 | 2,422 | 6,44 | 39,5 % |
+| 2020 | 1,250 | 2,460 | 2,300 | 6,01 | 43,3 % |
+| 2024 | 1,43 | 1,93 | 2,42 | 5,78 | 45,7 % |
+| **2025 (Ziel)** | **1,300** | **1,755** | **2,200** | **5,25** | **50,6 %** |
+| **2030 (Ziel)** | **0,650** | **0,877** | **1,100** | **2,63** | **75,3 %** |
+| **2035 (Ziel)** | **0** | **0** | **0** | **0** | **100 %** |
+
+**Das zentrale Dashboard-Argument:**
+- 1990–2024 (34 Jahre): −45,7 % erreicht
+- 2024–2035 (11 Jahre): −54,3 % nötig
+- Nötige jährliche Einsparung: **ca. 49.101 t THG absolut**
+- 2024 lief es in die falsche Richtung: +24.852 t statt −49.101 t
+
+---
+
+## 13. MASSNAHMEN — quantifizierbare THG-Einsparungen
+
+| Maßnahme | THG-Einsparung |
+|----------|----------------|
+| PowerLahn Wärmepumpe (Lahnwasser) | **7.767 t/a** |
+| Sanierungen Wohnbau gesamt | 300,7 t/a |
+| — davon Spitzwegring (Gas→Fernwärme) | 144,5 t/a |
+| — Rambachweg | 26,5 t/a |
+| — Marburger Straße (Gas→FW) | 27,4 t/a |
+| — Dürerstraße (Gas→FW) | 23,4 t/a |
+| — Trieb 4 | 12,9 t/a |
+| — Stephanstraße 45 | 7,7 t/a |
+| — Nahrungsberg 64 | 12,2 t/a |
+| — Steinstraße 13-17 | 18,3 t/a |
+| — Schiffenberger Weg (Gas→FW) | 27,8 t/a |
+| PV-Anlagen Wohnbau gesamt | 293 t/a |
+| — 17 Anlagen, 404 kWp, 357.540 kWh/a | 160,5 t/a |
+| — 13 Anlagen, 332 kWp, 295.000 kWh/a | 132,5 t/a |
+| PV Klärwerk (MWB) 20 kWp | 7,6 t/a |
+| PV Bürgerhaus Kleinlinden 28 kWp | 10,4 t/a |
+| PV Freibad Ringallee 228 Module, 90.000 kWh/a | 40,4 t/a |
+| Pumpentausch Ernst-Toller-Weg (−13.369 kWh/a) | 6,8 t/a |
+| Beleuchtungstausch SWG | 0,3 t/a |
+| **Quantifiziert gesamt** | **ca. 8.426 t/a** |
+| Ökosysteme (Schätzung wissenschaftlich) | **~38.000 t** |
+
+**Emissionsfaktoren (für Berechnungen):**
+- Bundesstrommix: 505 g/kWh
+- Erdgas: 257 g/kWh
+- Fernwärme: 189 g/kWh
+- PV-Vorkette: 56 g/kWh
+
+---
+
+## 14. MASSNAHMEN-STATUS (Überblick nach Handlungsfeldern)
+
+| Handlungsfeld | In Planung | In Umsetzung | Umgesetzt | Verworfen | Gesamt |
+|---|---|---|---|---|---|
+| Energie | 8 | 23 | 8 | 0 | 39 |
+| Mobilität | 14 | 10 | 11 | 0 | 35 |
+| Stadtentwicklung | 6 | 21 | 3 | 0 | 30 |
+| Öffentlichkeitsarbeit | 2 | 15 | 4 | 1 | 22 |
+| **Gesamt** | **30** | **69** | **26** | **1** | **126** |
+
+---
+
+## 15. SCHLÜSSEL-WECHSELWIRKUNGEN für Dashboards (Beziehungsgraph)
+
+| Ursache | Wirkung | Richtung |
+|---------|---------|----------|
+| Mehr Wärmepumpen | ↑ Stromverbrauch | negativ kurzfristig |
+| Mehr Wärmepumpen | ↓ Erdgasverbrauch | positiv |
+| Mehr E-Autos | ↑ Stromverbrauch | negativ kurzfristig |
+| Emissionsfaktor Strommix steigt | ↑ THG trotz gleichem Verbrauch | extern, unkontrollierbar lokal |
+| Lieferanteninsolvenz Biomethan | ↑ Erdgaseinsatz in KWK | Risiko: Monolieferkette |
+| Lieferanteninsolvenz Biomethan | ↓ EE-Anteil am Strom | Paradox: PV wächst, EE-Quote sinkt |
+| Milde Winter | ↓ Wärmeverbrauch scheinbar | Witterungsbereinigung nötig |
+| Steigende Einwohnerzahl | ↓ Pro-Kopf-Werte | verzerrt absoluten Trend |
+| Atomausstieg 2023 | ↑ Emissionsfaktor Bundesmix | strukturell, national |
+| Hohe Energiepreise | ↓ Wärmeverbrauch | verhaltensbedingt, instabil |
+
+---
+
+Das gibt dir eine vollständige, dashboardtaugliche Datenbasis. Soll ich daraus direkt die ersten interaktiven React-Dashboards bauen — z.B. als erstes den THG-Zielpfad-Chart oder die Sektorenentwicklung?

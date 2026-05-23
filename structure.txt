@@ -1,0 +1,39 @@
+/volt-giessen-website
+  ├── index.html                  # Core HTML structure & app mount point
+  ├── css/
+  │   ├── variables.css           # Global custom properties (colors, fonts, sizes)
+  │   ├── base.css                # Global CSS reset & base settings
+  │   ├── layout.css              # Main layout (header, footer, sidebar)
+  │   ├── animations.css          # Modern transitions and micro-animations
+  │   ├── components/             # Reusable UI component styles
+  │   │   ├── buttons.css
+  │   │   ├── inputs.css
+  │   │   ├── cards.css
+  │   │   ├── timeline.css
+  │   │   ├── motions.css
+  │   │   └── modal.css
+  │   └── pages/                  # Page-specific styles
+  │       ├── home.css
+  │       ├── fraktion.css
+  │       ├── programm.css
+  │       ├── antraege.css
+  │       ├── news.css
+  │       └── contact.css
+  └── js/
+      ├── app.js                  # Main entry point & initialization
+      ├── router.js               # Lightweight client-side router
+      ├── store.js                # State management and mock database
+      ├── components/             # Functional component templates
+      │   ├── Navbar.js
+      │   ├── Footer.js
+      │   ├── MotionCard.js
+      │   ├── CouncilorCard.js
+      │   ├── Timeline.js
+      │   └── FeedbackForm.js
+      └── pages/                  # Page controllers / renderers
+          ├── home.js
+          ├── fraktion.js
+          ├── programm.js
+          ├── antraege.js
+          ├── news.js
+          └── contact.js

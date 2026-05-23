@@ -1,0 +1,18 @@
+{
+  "name": "volt-giessen-website",
+  "version": "1.0.0",
+  "description": "Website der Stadtverordnetenversammlungs-Fraktion der Partei Volt in Gießen.",
+  "main": "js/app.js",
+  "scripts": {
+    "start": "npx live-server --port=3000 --entry-file=index.html",
+    "serve": "python -m http.server 3000"
+  },
+  "keywords": [
+    "volt",
+    "giessen",
+    "fraktion",
+    "website"
+  ],
+  "author": "Antigravity Code Assistant",
+  "license": "MIT"
+}

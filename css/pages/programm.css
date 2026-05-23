@@ -1,0 +1,150 @@
+/* Program Page Specific Styles */
+
+.program-intro-header {
+    background: linear-gradient(rgba(80, 35, 121, 0.9), rgba(80, 35, 121, 0.95)), url('../../assets/giessen-skyline.png');
+    background-size: cover;
+    background-position: center;
+    color: #FFFFFF;
+    padding: var(--space-16) 0;
+    text-align: center;
+}
+
+.program-intro-header h1 {
+    color: #FFFFFF;
+}
+
+/* Tabs or Sidebar Selector Layout */
+.program-explore-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: var(--space-8);
+    margin-top: var(--space-12);
+    margin-bottom: var(--space-16);
+}
+
+.program-tabs-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.program-tab-btn {
+    text-align: left;
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-body);
+    border: 1px solid var(--color-border-subtle);
+    border-left: 4px solid transparent;
+    padding: var(--space-4) var(--space-6);
+    font-family: var(--font-primary);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.program-tab-btn:hover {
+    background-color: var(--color-bg-tertiary);
+    color: var(--color-primary);
+}
+
+.program-tab-btn.active {
+    background-color: var(--color-bg-primary);
+    color: var(--color-primary);
+    border-left-color: var(--color-accent);
+    border-right-color: transparent;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Content Area details */
+.program-content-display {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border-subtle);
+    padding: var(--space-8);
+    border-radius: 4px;
+    box-shadow: var(--shadow-sm);
+}
+
+.program-content-pillar-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.program-pillar-icon {
+    font-size: 36px;
+    color: var(--color-accent);
+    line-height: 1;
+}
+
+.program-pillar-title {
+    font-size: var(--font-size-h2-large);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.program-point-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-6);
+}
+
+.program-point-item {
+    background-color: var(--color-bg-secondary);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 4px;
+    padding: var(--space-6);
+    position: relative;
+    padding-left: var(--space-12);
+}
+
+.program-point-item::before {
+    content: '➔';
+    position: absolute;
+    left: var(--space-4);
+    top: var(--space-6);
+    color: var(--color-accent);
+    font-weight: 700;
+}
+
+.program-point-title {
+    font-size: var(--font-size-h3);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: var(--space-2);
+}
+
+.program-point-desc {
+    color: var(--color-text-body);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .program-explore-wrapper {
+        grid-template-columns: 1fr;
+        gap: var(--space-6);
+    }
+    
+    .program-tabs-sidebar {
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: var(--space-2);
+        scrollbar-width: thin;
+    }
+    
+    .program-tab-btn {
+        white-space: nowrap;
+        border-left: 1px solid var(--color-border-subtle);
+        border-bottom: 4px solid transparent;
+        padding: var(--space-3) var(--space-4);
+    }
+    
+    .program-tab-btn.active {
+        border-left-color: var(--color-border-subtle);
+        border-bottom-color: var(--color-accent);
+    }
+}

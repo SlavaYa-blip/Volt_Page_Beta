@@ -1,0 +1,107 @@
+/* Modern Transitions and Micro-Animations */
+
+/* Page View Transition Animations */
+.page-view {
+    animation: pageFadeIn var(--transition-normal) forwards;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Micro-interaction Keyframes */
+@keyframes pulseSecondary {
+    0% {
+        box-shadow: 0 0 0 0 rgba(253, 194, 32, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(253, 194, 32, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(253, 194, 32, 0);
+    }
+}
+
+@keyframes floatElement {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes drawBorder {
+    to { width: 100%; }
+}
+
+/* Application Animation Utilities */
+.anim-fade-in {
+    opacity: 0;
+    animation: fadeIn var(--transition-slow) forwards;
+}
+
+.anim-slide-up {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: slideUp var(--transition-slow) forwards;
+}
+
+.anim-slide-up-delay-1 {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: slideUp var(--transition-slow) 0.15s forwards;
+}
+
+.anim-slide-up-delay-2 {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: slideUp var(--transition-slow) 0.3s forwards;
+}
+
+.anim-float {
+    animation: floatElement 4s ease-in-out infinite;
+}
+
+.anim-pulse-yellow {
+    animation: pulseSecondary 2s infinite;
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover Micro-interactions */
+.interactive-hover-grow {
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.interactive-hover-grow:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Diagonal stripe gradient animation background */
+.animated-gradient-bg {
+    background: linear-gradient(-45deg, #502379, #6a349c, #1BBE6F, #502379);
+    background-size: 400% 400%;
+    animation: gradientMove 15s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}

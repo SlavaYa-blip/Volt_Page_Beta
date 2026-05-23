@@ -1,0 +1,126 @@
+/* CSS Variable System - Volt Gießen Branding Compliance */
+
+:root {
+    /* Color Scheme (Light by default) */
+    --color-primary: #502379;      /* Volt Purple */
+    --color-secondary: #FDC220;    /* Volt Yellow */
+    --color-accent: #1BBE6F;       /* Volt Green */
+    
+    /* Backgrounds */
+    --color-bg-primary: #FFFFFF;
+    --color-bg-secondary: #F8F6FA;
+    --color-bg-tertiary: #EEEAF2;
+    --color-bg-card: #FFFFFF;
+    --color-bg-navbar: rgba(255, 255, 255, 0.85);
+    
+    /* Borders & Accents */
+    --color-border-subtle: #E1D9E8;
+    --color-border-focus: #502379;
+    
+    /* Text Colors */
+    --color-text-primary: #502379;
+    --color-text-muted: #5C5464;
+    --color-text-body: #2D2734;
+    --color-text-light: #FFFFFF;
+    --color-text-link: #502379;
+    --color-text-link-hover: #FDC220;
+    
+    /* Status Colors */
+    --color-status-draft: #8B8690;
+    --color-status-submitted: #3182CE;
+    --color-status-committee: #D69E2E;
+    --color-status-approved: #1BBE6F;
+    --color-status-rejected: #E53E3E;
+    
+    /* Typography */
+    --font-primary: 'Ubuntu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    
+    /* Font Sizes (Branding specific constraints) */
+    --font-size-h1: 64px;
+    --font-size-h2: 16px;
+    --font-size-body: 18px;
+    
+    /* General Sizing */
+    --font-size-h1-mobile: 40px;
+    --font-size-h2-large: 32px;  /* For large section headers */
+    --font-size-h3: 20px;
+    --font-size-small: 14px;
+    --font-size-tiny: 12px;
+    
+    /* Line Heights */
+    --lh-h1: 1.15;
+    --lh-h2: 1.3;
+    --lh-body: 1.6;
+    
+    /* Spacing System (Base Unit 4px) */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-24: 96px;
+    
+    /* Components Specific Styles */
+    --input-bg: #FFFFFF;
+    --input-text: #1D1D1D;
+    --input-border-radius: 0px;
+    
+    --btn-primary-bg: #502379;
+    --btn-primary-text: #FFFFFF;
+    --btn-primary-radius: 4px;
+    
+    /* Volt Secondary button background is #FFFFFF, but text must be primary/readable */
+    --btn-secondary-bg: #FFFFFF;
+    --btn-secondary-text: #502379;
+    --btn-secondary-border: #502379;
+    --btn-secondary-radius: 4px;
+    
+    /* Elevation & Shadows */
+    --shadow-none: none;
+    --shadow-sm: 0 1px 3px rgba(80, 35, 121, 0.08);
+    --shadow-md: 0 4px 20px -2px rgba(80, 35, 121, 0.1);
+    --shadow-lg: 0 10px 30px -5px rgba(80, 35, 121, 0.15);
+    --shadow-glass: 0 8px 32px 0 rgba(80, 35, 121, 0.08);
+    
+    /* UI Performance Settings */
+    --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Layout Dimensions */
+    --nav-height: 80px;
+    --max-width-content: 1280px;
+}
+
+/* Dark Mode Variables Override */
+.dark-theme {
+    --color-bg-primary: #120A1D;     /* Deep Volt Dark */
+    --color-bg-secondary: #1C122A;   /* Secondary Dark Panel */
+    --color-bg-tertiary: #271A3B;    /* Lighter Dark Contrast */
+    --color-bg-card: #1C122A;
+    --color-bg-navbar: rgba(18, 10, 29, 0.9);
+    
+    --color-border-subtle: #2C1E40;
+    --color-border-focus: #FDC220;
+    
+    --color-text-primary: #F0E8F8;
+    --color-text-muted: #A89CB8;
+    --color-text-body: #DFD7EB;
+    --color-text-link: #FDC220;
+    --color-text-link-hover: #1BBE6F;
+    
+    --input-bg: #1C122A;
+    --input-text: #DFD7EB;
+    
+    --btn-secondary-bg: #1C122A;
+    --btn-secondary-text: #FFFFFF;
+    --btn-secondary-border: #FDC220;
+    
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 30px -5px rgba(0, 0, 0, 0.4);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+}

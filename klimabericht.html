@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Klimabericht 2025 – Volt Fraktion Gießen</title>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --vp:#502379;--vpd:#3A1857;--vy:#FFDE40;--font:'Ubuntu',sans-serif;--mono:'Ubuntu Mono',monospace;
+  --bg:#0A0A12;--s1:#0F0F1E;--s2:#141428;--s3:#1a1a32;--bd:rgba(255,255,255,0.08);
+  --tx:#E0E0F0;--mu:rgba(255,255,255,0.4);--mu2:rgba(255,255,255,0.2);
+  --ac:#7B61FF;--li:#B8F759;--te:#3ECFCF;--am:#F5A623;--re:#FF5C5C;--pi:#FF6BB5;
+  --nav:80px;--max:1200px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font);background:var(--bg);color:var(--tx);overflow-x:hidden;font-size:14px}
+
+/* ── NAV ── */
+.topbar{background:var(--vpd);padding:.35rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.topbar span{font-size:.72rem;color:rgba(255,255,255,.5)}.topbar strong{color:var(--vy)}
+.topbar-r a{font-size:.7rem;color:rgba(255,255,255,.4);text-decoration:none;margin-left:.75rem;text-transform:uppercase;letter-spacing:.05em;transition:color .2s}.topbar-r a:hover{color:#fff}
+header{position:sticky;top:0;z-index:300;background:var(--vp);border-bottom:3px solid var(--vy);box-shadow:0 2px 20px rgba(58,24,87,.6)}
+.nav-inner{max-width:var(--max);margin:0 auto;padding:0 1.5rem;height:var(--nav);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-logo{display:flex;align-items:center;gap:9px;text-decoration:none}
+.logo-badge{width:38px;height:38px;background:var(--vy);border-radius:7px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:var(--vpd);flex-shrink:0}
+.logo-text{color:#fff;font-weight:700;font-size:.95rem;line-height:1.2}
+.logo-text span{display:block;font-weight:300;font-size:.67rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em}
+.nav-r{display:flex;align-items:center;gap:.6rem}
+.page-badge{background:rgba(255,222,64,.12);border:1px solid rgba(255,222,64,.3);color:var(--vy);padding:.25rem .7rem;border-radius:20px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em}
+.back-btn{color:rgba(255,255,255,.7);text-decoration:none;font-size:.82rem;padding:.35rem .8rem;border:1.5px solid rgba(255,255,255,.18);border-radius:6px;transition:all .2s}
+.back-btn:hover{border-color:#fff;color:#fff;background:rgba(255,255,255,.06)}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(135deg,var(--bg) 0%,#0e0e28 55%,#16102a 100%);border-bottom:1px solid rgba(255,222,64,.1);padding:2rem 1.5rem 1.5rem}
+.hero-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center}
+.hero h1{font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:#fff;line-height:1.2;margin-bottom:.4rem}
+.hero h1 em{font-style:normal;color:var(--vy)}
+.hero p{color:rgba(255,255,255,.5);font-size:.85rem;max-width:500px;margin-bottom:.6rem}
+.hero-meta{display:flex;gap:1rem;flex-wrap:wrap;font-size:.68rem;color:rgba(255,255,255,.3)}
+.hkpis{display:flex;gap:.8rem;flex-wrap:wrap}
+.hkpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:.8rem 1rem;text-align:center;min-width:100px}
+.hkpi-v{display:block;font-size:1.3rem;font-weight:700;font-family:var(--mono);line-height:1}
+.hkpi-l{display:block;font-size:.63rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.05em;margin-top:.3rem}
+@media(max-width:700px){.hero-inner{grid-template-columns:1fr}.hkpis{display:grid;grid-template-columns:repeat(2,1fr)}}
+
+/* ── TABS ── */
+.tabs-bar{background:var(--s1);border-bottom:1px solid var(--bd);position:sticky;top:var(--nav);z-index:200;overflow-x:auto}
+.tabs{max-width:var(--max);margin:0 auto;padding:0 1.5rem;display:flex;gap:0;white-space:nowrap}
+.tb{background:none;border:none;border-bottom:3px solid transparent;padding:.65rem 1rem;font-family:var(--font);font-size:.82rem;font-weight:400;color:var(--mu);cursor:pointer;transition:all .2s;white-space:nowrap;margin-bottom:-1px}
+.tb:hover{color:var(--tx)}.tb.act{color:#fff;font-weight:700;border-bottom-color:var(--ac)}
+
+/* ── PANELS ── */
+.panels{max-width:var(--max);margin:0 auto;padding:1.25rem 1.5rem 3rem}
+.panel{display:none}.panel.act{display:block}
+
+/* ── CONTROLS ── */
+.ctrl-bar{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ctrl-label{font-size:.72rem;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap}
+.ctrl-sep{width:1px;height:20px;background:var(--bd);flex-shrink:0}
+.btn-grp{display:flex;gap:4px;flex-wrap:wrap}
+.cbtn{background:var(--s3);border:1px solid var(--bd);color:var(--mu);padding:.3rem .75rem;border-radius:6px;cursor:pointer;font-family:var(--font);font-size:.78rem;transition:all .2s;white-space:nowrap}
+.cbtn:hover{border-color:rgba(255,255,255,.3);color:var(--tx)}.cbtn.on{background:var(--ac);border-color:var(--ac);color:#fff;font-weight:600}
+.cbtn.c-li{background-color:#1a2e0a;border-color:var(--li);color:var(--li)}.cbtn.c-li.on{background:var(--li);color:#0a0a12}
+.cbtn.c-te{background-color:#0a2020;border-color:var(--te);color:var(--te)}.cbtn.c-te.on{background:var(--te);color:#0a0a12}
+.cbtn.c-am{background-color:#2a1a00;border-color:var(--am);color:var(--am)}.cbtn.c-am.on{background:var(--am);color:#0a0a12}
+.cbtn.c-re{background-color:#2a0808;border-color:var(--re);color:var(--re)}.cbtn.c-re.on{background:var(--re);color:#fff}
+.cbtn.c-vy{background-color:#2a2200;border-color:var(--vy);color:var(--vy)}.cbtn.c-vy.on{background:var(--vy);color:#0a0a12}
+.cbtn.c-pi{background-color:#2a0818;border-color:var(--pi);color:var(--pi)}.cbtn.c-pi.on{background:var(--pi);color:#fff}
+
+/* Year range */
+.yr-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.yr-label{font-size:.75rem;color:var(--vy);font-family:var(--mono);font-weight:700;min-width:80px}
+.yr-range{-webkit-appearance:none;appearance:none;width:160px;height:4px;border-radius:2px;background:var(--s3);outline:none;cursor:pointer}
+.yr-range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;background:var(--vy);cursor:pointer;border:2px solid var(--bg)}
+
+/* ── LAYOUT ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.g1{display:grid;grid-template-columns:1fr;gap:12px;margin-bottom:12px}
+@media(max-width:700px){.g2,.g3{grid-template-columns:1fr}}
+
+/* ── KPI ROW ── */
+.krow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.kpi{background:var(--s2);border:1px solid var(--bd);border-top:3px solid var(--ac);border-radius:9px;padding:12px 16px;flex:1;min-width:110px}
+.kv{font-size:1.4rem;font-weight:700;font-family:var(--mono);line-height:1}
+.kd{font-size:.7rem;margin-top:3px}
+.kl{font-size:.75rem;font-weight:600;color:var(--tx);margin-top:4px}
+.ks{font-size:.67rem;color:var(--mu);margin-top:2px}
+
+/* ── CARD ── */
+.cc{background:var(--s2);border:1px solid var(--bd);border-radius:11px;padding:18px}
+.cc-t{font-size:.85rem;font-weight:700;color:#fff;margin-bottom:2px}
+.cc-s{font-size:.68rem;color:var(--mu);margin-bottom:12px}
+
+/* ── SECTION HEAD ── */
+.sh{font-size:1rem;font-weight:700;color:#fff;margin-bottom:2px}
+.ss{font-size:.78rem;color:var(--mu);margin-bottom:14px}
+
+/* ── TABLE ── */
+.tbl{width:100%;border-collapse:collapse;font-size:.78rem}
+.tbl th{background:var(--vp);color:#fff;padding:7px 10px;text-align:left;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.tbl td{padding:7px 10px;border-bottom:1px solid var(--bd);vertical-align:top}
+.tbl tr:hover td{background:rgba(255,255,255,.03)}
+.tbl .hi{color:var(--vy);font-weight:700;font-family:var(--mono)}
+
+/* ── PIE LEGEND ── */
+.pleg{display:flex;flex-wrap:wrap;gap:5px 12px;margin-top:10px}
+.pli{display:flex;align-items:center;gap:5px;font-size:.7rem;color:var(--mu)}
+.pd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+/* ── ALERT ── */
+.alert{background:var(--s2);border:1px solid rgba(255,222,64,.2);border-left:4px solid var(--vy);border-radius:9px;padding:16px;margin-bottom:12px}
+.at{font-size:.85rem;font-weight:700;color:var(--vy);margin-bottom:6px}
+.ab{font-size:.8rem;color:var(--tx);line-height:1.7}
+.kritik-g{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+@media(max-width:600px){.kritik-g{grid-template-columns:1fr}}
+.kk{background:var(--s2);border:1px solid var(--bd);border-radius:9px;padding:16px}
+.kki{font-size:1.3rem;margin-bottom:7px}.kkt{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:6px}
+.kkb{font-size:.75rem;color:var(--mu);line-height:1.6}
+
+/* ── PROGRESS BAR ── */
+.pbar-wrap{margin-bottom:10px}
+.pbar-head{display:flex;justify-content:space-between;font-size:.75rem;margin-bottom:4px;color:var(--mu)}
+.pbar-head span:last-child{color:var(--tx);font-weight:600;font-family:var(--mono)}
+.pbar-track{height:7px;background:var(--s3);border-radius:4px;overflow:hidden}
+.pbar-fill{height:100%;border-radius:4px;transition:width .8s ease}
+
+/* ── ECO CARDS ── */
+.eco-g{display:flex;gap:8px;flex-wrap:wrap}
+.eco-c{flex:1;min-width:140px;background:var(--s1);border:1px solid var(--bd);border-radius:8px;padding:12px}
+.eco-l{font-size:.75rem;font-weight:700;color:#fff;margin-bottom:2px}
+.eco-s{font-size:.65rem;color:var(--mu);margin-bottom:5px}
+.eco-v{font-size:.75rem;font-weight:700}
+
+/* ── WECHSELWIRK ── */
+.ww-g{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+@media(max-width:600px){.ww-g{grid-template-columns:1fr}}
+.ww-c{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:12px;display:flex;align-items:flex-start;gap:10px}
+.ww-arrow{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.ww-body{font-size:.75rem;line-height:1.5}.ww-cause{color:var(--mu);margin-bottom:2px}
+.ww-effect{color:var(--tx);font-weight:600}
+
+/* CHART CONTAINER */
+.ch{position:relative}
+
+/* ── SITE NAV ── */
+.kl-nav{position:sticky;top:0;z-index:400;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #E1D9E8;font-family:'Ubuntu',sans-serif}
+.kl-nav-inner{max-width:1200px;margin:0 auto;padding:0 1.5rem;height:80px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.kl-logo{display:flex;align-items:center;height:100%;text-decoration:none}
+.kl-logo-svg{height:38px;width:auto;fill:#502379;transition:transform .15s;flex-shrink:0}
+.kl-logo-svg:hover{transform:scale(1.03)}
+.kl-links{display:flex;align-items:center;gap:1.5rem}
+.kl-link{color:#2D2734;font-weight:500;font-size:16px;text-decoration:none;padding:.5rem 0;position:relative;transition:color .15s}
+.kl-link::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#FDC220;transition:width .15s}
+.kl-link:hover{color:#502379}.kl-link:hover::after,.kl-link.active::after{width:100%}.kl-link.active{color:#502379}
+.kl-actions{display:flex;align-items:center;gap:.75rem}
+.kl-theme-btn{background:transparent;border:1px solid #E1D9E8;border-radius:50%;width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#2D2734;transition:background .15s,border-color .15s;flex-shrink:0}
+.kl-theme-btn:hover{background:#F8F6FA;border-color:#502379;color:#502379}
+.kl-back-btn{color:#502379;text-decoration:none;font-family:'Ubuntu',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.5rem 1rem;border:2px solid #502379;border-radius:4px;transition:background .15s,color .15s;white-space:nowrap}
+.kl-back-btn:hover{background:#502379;color:#fff}
+.kl-cta-btn{background:#502379;color:#fff;text-decoration:none;font-family:'Ubuntu',sans-serif;font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:.5rem 1rem;border:2px solid #502379;border-radius:4px;transition:background .15s;white-space:nowrap}
+.kl-cta-btn:hover{background:#3b185a;border-color:#3b185a}
+@media(max-width:900px){.kl-links{display:none}}
+@media(max-width:500px){.kl-back-btn{font-size:12px;padding:.4rem .7rem}}
+
+/* FOOTER */
+.pf{background:#06060E;border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 1.5rem;margin-top:2rem}
+.pf-inner{max-width:var(--max);margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem}
+.pf p{font-size:.72rem;color:rgba(255,255,255,.28)}.pf a{color:rgba(255,255,255,.38);text-decoration:none;font-size:.72rem;margin-left:1rem;transition:color .2s}.pf a:hover{color:rgba(255,255,255,.75)}
+</style>
+</head>
+<body>
+
+<header class="kl-nav">
+  <div class="kl-nav-inner">
+    <a href="index.html" class="kl-logo" aria-label="Volt Gießen Startseite">
+      <svg class="kl-logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 96">
+        <path d="M202.893 64.6385V39.5113H221.464V22.6822H202.893V0L182.694 3.20705V64.9137C182.694 69.5285 183.117 73.7411 183.983 77.5408C184.839 81.3406 186.349 84.5794 188.526 87.2467C190.691 89.9139 193.586 91.999 197.199 93.4914C200.812 94.9838 205.375 95.7353 210.89 95.7353C215.232 95.7353 218.887 95.3754 221.866 94.6451C224.845 93.9254 227.56 93.0575 230 92.0625L227.148 76.3131C225.246 77.0434 223.155 77.6043 220.841 78.0065C218.538 78.4088 216.298 78.6204 214.133 78.6204C209.611 78.6204 206.611 77.3503 205.122 74.8207C203.632 72.291 202.893 68.8934 202.893 64.6385Z"/>
+        <path d="M57.7218 94.1053C61.4404 86.2412 65.1166 78.0489 68.7295 69.5391C72.3424 61.0293 75.7757 52.6147 79.0294 44.2849C82.2832 35.955 85.2728 27.9956 88.0194 20.4066C90.7555 12.7965 93.1747 6.00132 95.2769 0L72.765 0C71.0008 5.48269 69.0359 11.357 66.8914 17.6335C64.7363 23.9206 62.5496 30.1865 60.3206 36.4207C58.0916 42.6655 55.9259 48.635 53.8343 54.3506C51.7426 60.0661 49.8094 64.9878 48.0452 69.1157C46.1753 64.9561 44.2104 60.0238 42.1716 54.3082C40.1222 48.5927 37.9882 42.6125 35.7592 36.3784C33.5302 30.1442 31.3329 23.8783 29.1778 17.6018C27.0228 11.3147 25.0684 5.45093 23.3148 0L0 0C1.9966 5.96957 4.36294 12.7647 7.10959 20.3748C9.85623 27.985 12.8564 35.9444 16.1313 44.2637C19.4061 52.583 22.8605 60.9975 26.4946 69.4968C30.1286 77.996 33.8154 86.1988 37.5551 94.1053H57.7218Z"/>
+        <path d="M176.028 0L155.83 3.20705V94.1053H176.028V0Z"/>
+        <path d="M150.189 59.3359C150.189 39.0881 133.804 22.6718 113.595 22.6718C105.26 22.6718 97.5798 25.466 91.4316 30.1549C89.7202 34.7379 87.9243 39.4373 86.0334 44.2638C83.3078 51.2283 80.4661 58.2669 77.4871 65.3584C80.371 82.7484 95.4353 96 113.595 96C133.804 96 150.189 79.5837 150.189 59.3359ZM131.871 59.3359C131.871 69.3592 123.757 77.488 113.753 77.488C103.749 77.488 95.636 69.3592 95.636 59.3359C95.636 49.3125 103.749 41.1838 113.753 41.1838C123.757 41.1838 131.871 49.3125 131.871 59.3359Z"/>
+      </svg>
+    </a>
+    <nav class="kl-links" aria-label="Hauptnavigation">
+      <a href="index.html#/" class="kl-link">Startseite</a>
+      <a href="index.html#/fraktion" class="kl-link">Fraktion</a>
+      <a href="index.html#/programm" class="kl-link">Programm</a>
+      <a href="index.html#/antraege" class="kl-link">Anträge</a>
+      <a href="index.html#/news" class="kl-link active">News</a>
+      <a href="index.html#/kontakt" class="kl-link">Kontakt</a>
+    </nav>
+    <div class="kl-actions">
+      <button class="kl-theme-btn" aria-label="Farbschema umschalten">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" width="20" height="20">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+        </svg>
+      </button>
+      <a href="index.html#/news" class="kl-back-btn">← Zurück zur Newsseite</a>
+      <a href="index.html#/kontakt" class="kl-cta-btn">Mitmachen</a>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1>Klimaschutz- &amp; Energiebericht<br><em>Gießen 2025</em></h1>
+      <p>Vollständige Datenbasis aus dem offiziellen Bericht – es können Fehler enthalten sein.</p>
+      <div class="hero-meta">
+        <span>📋 Quelle: Klimaschutz- und Energiebericht 2025, Stadt Gießen</span>
+        <span>📐 BISKO / Territorialprinzip</span>
+        <span>👥 Bezugsgröße: 93.317 EW (2024)</span>
+      </div>
+    </div>
+    <div class="hkpis">
+      <div class="hkpi"><span class="hkpi-v" style="color:var(--re)">588.079</span><span class="hkpi-l">t THG 2024</span></div>
+      <div class="hkpi"><span class="hkpi-v" style="color:var(--re)">+4,4 %</span><span class="hkpi-l">vs. 2023</span></div>
+      <div class="hkpi"><span class="hkpi-v" style="color:var(--li)">−28,7 %</span><span class="hkpi-l">vs. 1990</span></div>
+      <div class="hkpi"><span class="hkpi-v" style="color:var(--vy)">2035</span><span class="hkpi-l">Klimaziel</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs-bar">
+  <div class="tabs">
+    <button class="tb act" data-tab="overview">Übersicht</button>
+    <button class="tb" data-tab="thg">THG-Emissionen</button>
+    <button class="tb" data-tab="energie">Energieverbrauch</button>
+    <button class="tb" data-tab="prokopf">Pro-Kopf</button>
+    <button class="tb" data-tab="pv">Strom &amp; PV</button>
+    <button class="tb" data-tab="waerme">Wärme</button>
+    <button class="tb" data-tab="zielpfad">Zielpfad</button>
+    <button class="tb" data-tab="massnahmen">Maßnahmen</button>
+    <!-- <button class="tb" data-tab="volt" style="color:var(--am)">⚡ Volt-Analyse</button> -->
+  </div>
+</div>
+
+<div class="panels">
+
+<!-- ═══════════════════════════════════════════════════════ ÜBERSICHT -->
+<div class="panel act" id="panel-overview">
+  <div class="sh">Gesamtüberblick</div>
+  <div class="ss">Alle Schlüsselkennzahlen auf einen Blick – Gießen 2024 im Vergleich zu 1990 und 2023</div>
+  <div class="krow">
+    <div class="kpi" style="border-top-color:var(--re)"><div class="kv" style="color:var(--re)">588.079 t</div><div class="kd" style="color:var(--re)">+24.852 t vs. 2023 (+4,4 %)</div><div class="kl">THG gesamt 2024</div><div class="ks">BISKO, Territorialprinzip</div></div>
+    <div class="kpi" style="border-top-color:var(--li)"><div class="kv" style="color:var(--li)">−28,7 %</div><div class="kd" style="color:var(--li)">824.392 t in 1990</div><div class="kl">Reduktion seit 1990</div><div class="ks">Absolut; pro Kopf −43,2 %</div></div>
+    <div class="kpi" style="border-top-color:var(--te)"><div class="kv" style="color:var(--te)">6,30 t/EW</div><div class="kd" style="color:var(--re)">+0,22 vs. 2023</div><div class="kl">THG pro Kopf 2024</div><div class="ks">1990: 11,1 t/EW</div></div>
+    <div class="kpi" style="border-top-color:var(--am)"><div class="kv" style="color:var(--am)">49.101 t/a</div><div class="kd" style="color:var(--re)">2024 lief falsch: +24.852 t</div><div class="kl">Nötige Einsparung/Jahr</div><div class="ks">Regionalbilanz-basiert (Kap. 12 Klimabericht)</div></div>
+    <div class="kpi" style="border-top-color:var(--vy)"><div class="kv" style="color:var(--vy)">45,7 %</div><div class="kd" style="color:var(--mu)">34 Jahre für diesen Wert</div><div class="kl">THG-Reduktion seit 1990</div><div class="ks">Pro Kopf noch 54,3 % nötig in 11 J.</div></div>
+    <div class="kpi" style="border-top-color:var(--re)"><div class="kv" style="color:var(--re)">Verkehr</div><div class="kd" style="color:var(--re)">+9,86 % vs. 2023</div><div class="kl">Größter Problemsektor</div><div class="ks">39 % der Gesamtemissionen</div></div>
+  </div>
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">THG-Gesamtemissionen 1990–2024</div>
+      <div class="cc-s">t CO₂eq/a · BISKO Territorialprinzip</div>
+      <div class="ctrl-bar" style="margin-top:10px;flex-wrap:wrap;gap:10px;align-items:center">
+        <span class="ctrl-label">Zeitraum – THG-Gesamtemissionen</span>
+        <div class="yr-wrap" style="flex:1;min-width:320px">
+          <span class="yr-label" id="ov-range-label">1990 – 2024</span>
+          <input id="ov-start" class="yr-range" type="range" min="0" max="5" step="1" value="0">
+          <input id="ov-end" class="yr-range" type="range" min="0" max="5" step="1" value="5">
+        </div>
+      </div>
+      <div class="ch" style="height:230px"><canvas id="c-ov-thg"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Sektorverteilung 2024</div>
+      <div class="cc-s">Anteil am Gesamtausstoß nach Verbrauchssektoren</div>
+      <div class="ch" style="height:170px"><canvas id="c-ov-pie"></canvas></div>
+      <div class="pleg" id="leg-ov-pie"></div>
+    </div>
+  </div>
+  <div class="cc g1">
+    <div class="cc-t">THG-Entwicklung nach Energieträgern 1990–2024</div>
+    <div class="cc-s">t CO₂eq/a – Stacked nach Träger</div>
+    <div class="ctrl-bar" style="margin-top:10px;flex-wrap:wrap;gap:10px;align-items:center">
+      <span class="ctrl-label">Zeitraum – THG nach Energieträgern</span>
+      <div class="yr-wrap" style="flex:1;min-width:240px">
+        <span class="yr-label" id="ov-stack-range-label">1990 – 2024</span>
+        <input id="ov-stack-start" class="yr-range" type="range" min="0" max="5" step="1" value="0">
+        <input id="ov-stack-end" class="yr-range" type="range" min="0" max="5" step="1" value="5">
+      </div>
+    </div>
+    <div class="ch" style="height:200px"><canvas id="c-ov-stack"></canvas></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ THG -->
+<div class="panel" id="panel-thg">
+  <div class="sh">THG-Emissionen im Detail</div>
+  <div class="ss">Vollständige Zeitreihe nach Energieträgern und Verbrauchssektoren</div>
+
+  <div class="ctrl-bar">
+    <span class="ctrl-label">Ansicht</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="thg-abs" onclick="setThgMode('abs')">Absolutwerte (t/a)</button>
+      <button class="cbtn" id="thg-cap" onclick="setThgMode('cap')">Pro Kopf (t/EW/a)</button>
+    </div>
+    <div class="ctrl-sep"></div>
+    <span class="ctrl-label">Träger ein/aus</span>
+    <div class="btn-grp" id="thg-toggles"></div>
+  </div>
+
+  <div class="cc" style="margin-bottom:12px">
+    <div class="cc-t">THG nach Energieträgern</div>
+    <div class="cc-s">Balken mit wählbaren Energieträgern und Ansicht</div>
+    <div class="ch" style="height:260px"><canvas id="c-thg-traeger"></canvas></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">Sektoren 2023 vs. 2024</div>
+      <div class="cc-s">t/a nach Verbrauchssektoren</div>
+      <div class="ch" style="height:240px"><canvas id="c-thg-sektoren"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Vollständige Datentabelle</div>
+      <div class="cc-s">THG in t/a nach Energieträger und Jahr</div>
+      <div style="overflow-x:auto">
+        <table class="tbl" id="thg-table">
+          <thead><tr><th>Träger</th><th>1990</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>Δ 23→24</th></tr></thead>
+          <tbody>
+            <tr><td>Strom</td><td>316.732</td><td>154.756</td><td>152.602</td><td>149.349</td><td>163.173</td><td class="hi">176.037</td><td style="color:var(--re)">+7,9 %</td></tr>
+            <tr><td>Heizöl</td><td>92.927</td><td>22.798</td><td>22.798</td><td>22.252</td><td>26.207</td><td class="hi">25.864</td><td style="color:var(--li)">−1,3 %</td></tr>
+            <tr><td>Benzin</td><td>106.832</td><td>67.098</td><td>66.380</td><td>66.380</td><td>54.282</td><td class="hi">73.131</td><td style="color:var(--re)">+34,7 %</td></tr>
+            <tr><td>Diesel</td><td>107.705</td><td>126.462</td><td>129.110</td><td>129.054</td><td>141.345</td><td class="hi">142.385</td><td style="color:var(--re)">+0,7 %</td></tr>
+            <tr><td>Erdgas</td><td>132.629</td><td>114.738</td><td>148.570</td><td>127.352</td><td>103.613</td><td class="hi">100.546</td><td style="color:var(--li)">−3,0 %</td></tr>
+            <tr><td>Fernwärme</td><td>67.380</td><td>80.153</td><td>84.490</td><td>80.790</td><td>68.094</td><td class="hi">62.068</td><td style="color:var(--li)">−8,9 %</td></tr>
+            <tr style="font-weight:700;border-top:2px solid var(--bd)"><td>SUMME</td><td>824.392</td><td>574.216</td><td>611.373</td><td>582.649</td><td>563.227</td><td class="hi">588.079</td><td style="color:var(--re)">+4,4 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ ENERGIE -->
+<div class="panel" id="panel-energie">
+  <div class="sh">Energieverbrauch</div>
+  <div class="ss">Primär- und Endenergie nach Energieträgern 1990–2024</div>
+
+  <div class="ctrl-bar">
+    <span class="ctrl-label">Bilanzart</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="en-prim" onclick="setEnMode('prim')">Primärenergie</button>
+      <button class="cbtn" id="en-end" onclick="setEnMode('end')">Endenergie</button>
+    </div>
+    <div class="ctrl-sep"></div>
+    <span class="ctrl-label">Träger</span>
+    <div class="btn-grp" id="en-toggles"></div>
+  </div>
+
+  <div class="cc" style="margin-bottom:12px">
+    <div class="cc-t">Energieverbrauch nach Trägern</div>
+    <div class="cc-s" id="en-sub">MWh/a · Primärenergie</div>
+    <div class="ch" style="height:260px"><canvas id="c-en-main"></canvas></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">Verbrauchsstruktur 2024</div>
+      <div class="cc-s">Anteil je Energieträger am Gesamtverbrauch</div>
+      <div class="ch" style="height:180px"><canvas id="c-en-pie24"></canvas></div>
+      <div class="pleg" id="leg-en-pie"></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Gesamtverbrauch-Trend</div>
+      <div class="cc-s">MWh/a Summe aller Träger</div>
+      <div class="ctrl-bar" style="margin-top:10px;flex-wrap:wrap;gap:10px;align-items:center">
+        <span class="ctrl-label">Zeitraum – Gesamtverbrauch-Trend</span>
+        <div class="yr-wrap" style="flex:1;min-width:240px">
+          <span class="yr-label" id="en-total-range-label">1990 – 2024</span>
+          <input id="en-total-start" class="yr-range" type="range" min="0" max="6" step="1" value="0">
+          <input id="en-total-end" class="yr-range" type="range" min="0" max="6" step="1" value="6">
+        </div>
+      </div>
+      <div class="ch" style="height:180px"><canvas id="c-en-total"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PRO KOPF -->
+<div class="panel" id="panel-prokopf">
+  <div class="sh">Pro-Kopf-Entwicklung</div>
+  <div class="ss">Endenergie und THG-Emissionen pro Einwohner:in 1990–2024</div>
+
+  <div class="ctrl-bar">
+    <span class="ctrl-label">Metrik</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="pk-thg" onclick="setPKMode('thg')">THG (t CO₂eq/EW)</button>
+      <button class="cbtn" id="pk-en" onclick="setPKMode('en')">Endenergie (MWh/EW)</button>
+    </div>
+    <div class="ctrl-sep"></div>
+    <span class="ctrl-label">Sektoren</span>
+    <div class="btn-grp">
+      <button class="cbtn c-ac on" id="pk-strom" onclick="togglePK('strom',this)">Strom</button>
+      <button class="cbtn c-te on" id="pk-waerme" onclick="togglePK('waerme',this)">Wärme</button>
+      <button class="cbtn c-am on" id="pk-verkehr" onclick="togglePK('verkehr',this)">Verkehr</button>
+      <button class="cbtn c-vy on" id="pk-summe" onclick="togglePK('summe',this)">Gesamt</button>
+    </div>
+    <div class="ctrl-sep"></div>
+    <span class="ctrl-label">Witterung</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="pk-real" onclick="setPKWitter('real')">Tatsächlich</button>
+      <button class="cbtn" id="pk-ber" onclick="setPKWitter('ber')">Witterungsbereinigt</button>
+    </div>
+  </div>
+
+  <div class="ctrl-bar" style="margin-top:10px;flex-wrap:wrap;gap:10px;align-items:center">
+    <span class="ctrl-label">Zeitraum – Pro-Kopf-Chart</span>
+    <div class="yr-wrap" style="flex:1;min-width:240px">
+      <span class="yr-label" id="pk-range-label">1990 – 2024</span>
+      <input id="pk-start" class="yr-range" type="range" min="0" max="7" step="1" value="0">
+      <input id="pk-end" class="yr-range" type="range" min="0" max="7" step="1" value="7">
+    </div>
+  </div>
+
+  <div class="cc" style="margin-bottom:12px">
+    <div class="cc-t" id="pk-title">THG-Emissionen pro Kopf nach Sektor 1990–2024</div>
+    <div class="cc-s" id="pk-sub">t CO₂eq/EW/a · Regionalbilanz · tatsächlich</div>
+    <div class="ch" style="height:260px"><canvas id="c-pk-main"></canvas></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">1990 vs. 2024 — Sektorvergleich</div>
+      <div class="cc-s">Reduktion je Sektor in %</div>
+      <div class="ch" style="height:200px"><canvas id="c-pk-reduzierung"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Einwohnerentwicklung Gießen</div>
+      <div class="cc-s">Basis für alle Pro-Kopf-Berechnungen</div>
+      <div class="ctrl-bar" style="margin-top:10px;flex-wrap:wrap;gap:10px;align-items:center">
+        <span class="ctrl-label">Zeitraum – Einwohnerentwicklung</span>
+        <div class="yr-wrap" style="flex:1;min-width:240px">
+          <span class="yr-label" id="ew-range-label">1990 – 2024</span>
+          <input id="ew-start" class="yr-range" type="range" min="0" max="11" step="1" value="0">
+          <input id="ew-end" class="yr-range" type="range" min="0" max="11" step="1" value="11">
+        </div>
+      </div>
+      <div class="ch" style="height:200px"><canvas id="c-ew"></canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ STROM & PV -->
+<div class="panel" id="panel-pv">
+  <div class="sh">Strom &amp; Photovoltaik</div>
+  <div class="ss">PV-Ausbau, Eigenproduktion, EE-Anteil und Bundesstrommix-Entwicklung</div>
+
+  <div class="krow">
+    <div class="kpi" style="border-top-color:var(--vy)"><div class="kv" style="color:var(--vy)">49.999 kWp</div><div class="kd" style="color:var(--li)">+8.940 kWp (+21,8 %)</div><div class="kl">PV-Leistung 2024</div></div>
+    <div class="kpi" style="border-top-color:var(--am)"><div class="kv" style="color:var(--am)">42,36 %</div><div class="kd" style="color:var(--re)">–3,55 PP vs. 2023 (45,91 %)</div><div class="kl">EE-Anteil Strom 2024</div></div>
+    <div class="kpi" style="border-top-color:var(--re)"><div class="kv" style="color:var(--re)">505 g/kWh</div><div class="kd" style="color:var(--re)">+7 % vs. 2023 (472 g)</div><div class="kl">Emissionsfaktor Bundesmix</div></div>
+    <div class="kpi" style="border-top-color:var(--te)"><div class="kv" style="color:var(--te)">1,503 MWh/EW</div><div class="kd" style="color:var(--mu)">2023: 1,392 MWh/EW</div><div class="kl">Eigenproduktion 2024</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">PV-Ausbau Gießen 2018–2024</div>
+      <div class="cc-s">Installierte Bruttoleistung in kWp</div>
+      <div class="ch" style="height:220px"><canvas id="c-pv-ausbau"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">EE-Anteil am Strom 2023 vs. 2024</div>
+      <div class="cc-s">Trotz PV-Zubau sinkt der EE-Anteil – Biomethan-Paradox</div>
+      <div class="ch" style="height:180px"><canvas id="c-ee-pie"></canvas></div>
+      <div class="pleg" id="leg-ee"></div>
+    </div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">Eigenproduktion im Bilanzkreis</div>
+      <div class="cc-s">MWh/EW/a nach Quelle 1990–2024</div>
+      <div class="ch" style="height:220px"><canvas id="c-eigen"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Bundesstrommix-Entwicklung</div>
+      <div class="cc-s">MWh/EW/a nach Erzeugungsquelle</div>
+      <div class="ch" style="height:220px"><canvas id="c-bundesmix"></canvas></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-t" style="margin-bottom:8px">⚠️ Das Biomethan-Paradox</div>
+    <div class="ww-g">
+      <div class="ww-c"><div class="ww-arrow">📈</div><div class="ww-body"><div class="ww-cause">PV-Zubau 2024</div><div class="ww-effect">+21,8 % mehr installierte Leistung in Gießen</div></div></div>
+      <div class="ww-c"><div class="ww-arrow">📉</div><div class="ww-body"><div class="ww-cause">Lieferanteninsolvenz Biomethan-KWK</div><div class="ww-effect">KWK EE: 0,240 → 0,045 MWh/EW (–81 %)</div></div></div>
+      <div class="ww-c"><div class="ww-arrow">🔄</div><div class="ww-body"><div class="ww-cause">Substitution durch Erdgas-KWK</div><div class="ww-effect">Mehr fossile Wärme- und Stromproduktion</div></div></div>
+      <div class="ww-c"><div class="ww-arrow">⬇️</div><div class="ww-body"><div class="ww-cause">Netto-Ergebnis</div><div class="ww-effect">EE-Anteil 45,91 % → 42,36 % (–3,55 PP)</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ WÄRME -->
+<div class="panel" id="panel-waerme">
+  <div class="sh">Wärme</div>
+  <div class="ss">Wärmeverbrauch und -emissionen mit Witterungsbereinigung</div>
+
+  <div class="ctrl-bar">
+    <span class="ctrl-label">Witterung</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="w-real" onclick="setWaerme('real')">Tatsächlich</button>
+      <button class="cbtn" id="w-ber" onclick="setWaerme('ber')">Witterungsbereinigt</button>
+      <button class="cbtn" id="w-both" onclick="setWaerme('both')">Beide vergleichen</button>
+    </div>
+    <div class="ctrl-sep"></div>
+    <span class="ctrl-label">Metrik</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="w-thg" onclick="setWaermeMetrik('thg')">THG (t CO₂eq/EW)</button>
+      <button class="cbtn" id="w-en" onclick="setWaermeMetrik('en')">Endenergie (MWh/EW)</button>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-bottom:12px">
+    <div class="cc-t" id="w-title">Wärme-THG: tatsächlich 2020–2024</div>
+    <div class="cc-s" id="w-sub">t CO₂eq/EW/a – witterungsbereinigter Vergleich zeigt echte Einsparung</div>
+    <div class="ctrl-bar" style="margin-top:10px;flex-wrap:wrap;gap:10px;align-items:center">
+      <span class="ctrl-label">Zeitraum – Wärme-Chart</span>
+      <div class="yr-wrap" style="flex:1;min-width:240px">
+        <span class="yr-label" id="waerme-range-label">2020 – 2024</span>
+        <input id="waerme-start" class="yr-range" type="range" min="0" max="4" step="1" value="0">
+        <input id="waerme-end" class="yr-range" type="range" min="0" max="4" step="1" value="4">
+      </div>
+    </div>
+    <div class="ch" style="height:240px"><canvas id="c-waerme-main"></canvas></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">Witterungsbereinigung im Vergleich</div>
+      <div class="cc-s">Differenz zeigt „geschenkten" Scheinfortschritt durch Wärme</div>
+      <div class="ch" style="height:210px"><canvas id="c-waerme-diff"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Endenergie Wärme nach Träger 2024</div>
+      <div class="cc-s">Dominanz von Erdgas und Fernwärme</div>
+      <div class="ch" style="height:180px"><canvas id="c-waerme-pie"></canvas></div>
+      <div class="pleg" id="leg-waerme-pie"></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-t" style="margin-bottom:10px">Tabelle: Wärme-THG pro Kopf 2020–2024</div>
+    <table class="tbl">
+      <thead><tr><th>Jahr</th><th>Tatsächlich (t/EW)</th><th>Witterungsbereinigt (t/EW)</th><th>Differenz</th><th>Jahrestemp.</th></tr></thead>
+      <tbody>
+        <tr><td>2020</td><td>2,46</td><td>2,95</td><td style="color:var(--am)">+0,49</td><td>–</td></tr>
+        <tr><td>2021</td><td>2,83</td><td>2,97</td><td style="color:var(--am)">+0,14</td><td>kälter</td></tr>
+        <tr><td>2022</td><td>2,56</td><td>3,11</td><td style="color:var(--am)">+0,55</td><td>warm</td></tr>
+        <tr><td>2023</td><td>2,11</td><td>2,62</td><td style="color:var(--am)">+0,51</td><td>11,18 °C (Rekord)</td></tr>
+        <tr style="font-weight:700"><td style="color:var(--ac)">2024</td><td style="color:var(--te)">1,93</td><td style="color:var(--vy)">2,42</td><td style="color:var(--am)">+0,49</td><td>11,15 °C</td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:10px;font-size:.75rem;color:var(--mu);background:var(--s3);padding:10px;border-radius:6px">
+      💡 <strong style="color:var(--vy)">Witterungsbereinigung:</strong> Die warmen Winter 2023 und 2024 (Rekordtemperaturen) senken den Wärmeverbrauch und verzerren die Fortschrittsdarstellung. Witterungsbereinigt sind die Einsparungen deutlich kleiner – der tatsächliche Wärme-THG 2024 (1,93 t/EW) überschätzt den echten strukturellen Fortschritt um ca. 0,49 t/EW.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ ZIELPFAD -->
+<div class="panel" id="panel-zielpfad">
+  <div class="sh">Zielpfad zur Klimaneutralität 2035</div>
+  <div class="ss">Regionalbilanz-Emissionen (t CO₂eq/EW/a) mit offiziellen Zielwerten</div>
+
+  <div class="ctrl-bar">
+    <span class="ctrl-label">Darstellung</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="zp-gesamt" onclick="setZP('gesamt')">Gesamt</button>
+      <button class="cbtn" id="zp-sektoren" onclick="setZP('sektoren')">Nach Sektoren</button>
+    </div>
+    <div class="ctrl-sep"></div>
+    <span class="ctrl-label">Witterung</span>
+    <div class="btn-grp">
+      <button class="cbtn on" id="zp-real" onclick="setZPWitter('real')">Tatsächlich</button>
+      <button class="cbtn" id="zp-ber" onclick="setZPWitter('ber')">Witterungsbereinigt</button>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-bottom:12px">
+    <div class="cc-t" id="zp-title">Ist-Pfad vs. Zielpfad 2035 (Gesamt)</div>
+    <div class="cc-s">t CO₂eq/EW/a – Ziellücke wächst seit 2020</div>
+    <div class="ch" style="height:280px"><canvas id="c-zp-main"></canvas></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">Jährliche Restlücke zum Zielpfad</div>
+      <div class="cc-s">t CO₂eq — zusätzlicher Handlungsbedarf</div>
+      <div class="ch" style="height:200px"><canvas id="c-zp-luecke"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Zielpfad-Tabelle (Regionalbilanz)</div>
+      <div class="cc-s">t CO₂eq/EW/a nach Sektor — Offizielle Zielwerte</div>
+      <div style="overflow-x:auto">
+        <table class="tbl">
+          <thead><tr><th>Jahr</th><th>Strom</th><th>Wärme</th><th>Verkehr</th><th>Gesamt</th><th>Reduktion</th></tr></thead>
+          <tbody>
+            <tr><td>1990</td><td>3,62</td><td>3,94</td><td>3,09</td><td>10,64</td><td>0 %</td></tr>
+            <tr><td>2010</td><td>2,34</td><td>3,17</td><td>2,52</td><td>8,04</td><td>−24,4 %</td></tr>
+            <tr><td>2020</td><td>1,25</td><td>2,46</td><td>2,30</td><td>6,01</td><td>−43,3 %</td></tr>
+            <tr><td>2023</td><td>1,29</td><td>2,11</td><td>2,19</td><td class="hi">5,59</td><td style="color:var(--li)">−47,5 %</td></tr>
+            <tr style="color:var(--re)"><td>2024</td><td>1,43</td><td>1,93</td><td>2,42</td><td class="hi" style="color:var(--re)">5,78</td><td style="color:var(--re)">−45,7 % ↑</td></tr>
+            <tr style="color:var(--li)"><td>2025 (Ziel)</td><td>1,30</td><td>1,76</td><td>2,20</td><td class="hi" style="color:var(--li)">5,25</td><td>−50,6 %</td></tr>
+            <tr style="color:var(--li)"><td>2030 (Ziel)</td><td>0,65</td><td>0,88</td><td>1,10</td><td class="hi" style="color:var(--li)">2,63</td><td>−75,3 %</td></tr>
+            <tr style="color:var(--vy);font-weight:700"><td>2035 (Ziel)</td><td>0</td><td>0</td><td>0</td><td class="hi">0</td><td>−100 %</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-t" style="margin-bottom:8px">🧮 Lückenkalkulator</div>
+    <div style="display:flex;gap:16px;flex-wrap:wrap">
+      <div style="flex:1;min-width:180px;background:var(--s3);border-radius:8px;padding:14px">
+        <div style="font-size:.72rem;color:var(--mu);margin-bottom:4px">Erreichte Reduktion 1990→2024</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--vy);font-family:var(--mono)">45,7 %</div>
+        <div style="font-size:.7rem;color:var(--mu);margin-top:4px">in 34 Jahren = 1,34 %/Jahr</div>
+      </div>
+      <div style="flex:1;min-width:180px;background:var(--s3);border-radius:8px;padding:14px">
+        <div style="font-size:.72rem;color:var(--mu);margin-bottom:4px">Noch nötig 2024→2035</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--re);font-family:var(--mono)">54,3 %</div>
+        <div style="font-size:.7rem;color:var(--mu);margin-top:4px">in 11 Jahren = 4,94 %/Jahr nötig</div>
+      </div>
+      <div style="flex:1;min-width:180px;background:var(--s3);border-radius:8px;padding:14px">
+        <div style="font-size:.72rem;color:var(--mu);margin-bottom:4px">Benötigtes Mehrfaches</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--re);font-family:var(--mono)">3,7×</div>
+        <div style="font-size:.7rem;color:var(--mu);margin-top:4px">schnelleres Tempo als 1990–2024</div>
+      </div>
+      <div style="flex:1;min-width:180px;background:var(--s3);border-radius:8px;padding:14px">
+        <div style="font-size:.72rem;color:var(--mu);margin-bottom:4px">2024: Bewegung in Richtung</div>
+        <div style="font-size:1.5rem;font-weight:700;color:var(--re);font-family:var(--mono)">FALSCH</div>
+        <div style="font-size:.7rem;color:var(--mu);margin-top:4px">+24.852 t statt −49.101 t</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MASSNAHMEN -->
+<div class="panel" id="panel-massnahmen">
+  <div class="sh">Klimaschutzmaßnahmen</div>
+  <div class="ss">126 Maßnahmen in 4 Handlungsfeldern – Status und quantifizierte THG-Einsparungen</div>
+
+  <div class="krow">
+    <div class="kpi" style="border-top-color:var(--ac)"><div class="kv" style="color:var(--ac)">126</div><div class="kl">Maßnahmen gesamt</div><div class="ks">4 Handlungsfelder</div></div>
+    <div class="kpi" style="border-top-color:var(--li)"><div class="kv" style="color:var(--li)">69</div><div class="kl">In Umsetzung</div><div class="ks">54,8 %</div></div>
+    <div class="kpi" style="border-top-color:var(--te)"><div class="kv" style="color:var(--te)">26</div><div class="kl">Umgesetzt</div><div class="ks">20,6 %</div></div>
+    <div class="kpi" style="border-top-color:var(--am)"><div class="kv" style="color:var(--am)">30</div><div class="kl">In Planung</div><div class="ks">23,8 %</div></div>
+    <div class="kpi" style="border-top-color:var(--re)"><div class="kv" style="color:var(--re)">1</div><div class="kl">Verworfen</div></div>
+    <div class="kpi" style="border-top-color:var(--vy)"><div class="kv" style="color:var(--vy)">8.426 t</div><div class="kl">Quantif. Einsparung/a</div><div class="ks">berechenbare Maßnahmen</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">Maßnahmenstand nach Handlungsfeld</div>
+      <div class="cc-s">Anzahl je Status</div>
+      <div class="ch" style="height:220px"><canvas id="c-m-status"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">THG-Einsparungen je Maßnahme</div>
+      <div class="cc-s">t CO₂eq/a (quantifizierbare Maßnahmen)</div>
+      <div class="ch" style="height:220px"><canvas id="c-m-savings"></canvas></div>
+    </div>
+  </div>
+
+  <div class="cc" style="margin-bottom:12px">
+    <div class="cc-t" style="margin-bottom:10px">Detaillierte THG-Einsparungen (quantifiziert)</div>
+    <div class="pbar-wrap">
+      <div class="pbar-head"><span>PowerLahn Wärmepumpe (Lahnwasser)</span><span style="color:var(--li)">7.767 t/a ← dominant</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:92%;background:var(--te)"></div></div>
+    </div>
+    <div class="pbar-wrap">
+      <div class="pbar-head"><span>PV-Anlagen Wohnbau (30 Anlagen, 736 kWp)</span><span>293 t/a</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:3.5%;background:var(--vy)"></div></div>
+    </div>
+    <div class="pbar-wrap">
+      <div class="pbar-head"><span>Sanierungen Wohnbau gesamt (Gas→Fernwärme)</span><span>300,7 t/a</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:3.6%;background:var(--li)"></div></div>
+    </div>
+    <div class="pbar-wrap">
+      <div class="pbar-head"><span>PV Freibad Ringallee (228 Module, 90.000 kWh/a)</span><span>40,4 t/a</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:0.5%;background:var(--vy)"></div></div>
+    </div>
+    <div class="pbar-wrap">
+      <div class="pbar-head"><span>PV Bürgerhaus Kleinlinden (28 kWp)</span><span>10,4 t/a</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:3%;background:var(--vy)"></div></div>
+    </div>
+    <div class="pbar-wrap">
+      <div class="pbar-head"><span>PV Klärwerk (MWB, 20 kWp)</span><span>7,6 t/a</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:2%;background:var(--vy)"></div></div>
+    </div>
+    <div class="pbar-wrap">
+      <div class="pbar-head"><span>Pumpentausch Ernst-Toller-Weg (–13.369 kWh/a)</span><span>6,8 t/a</span></div>
+      <div class="pbar-track"><div class="pbar-fill" style="width:1.5%;background:var(--ac)"></div></div>
+    </div>
+    <div style="margin-top:10px;background:var(--s3);border-radius:6px;padding:10px;font-size:.75rem;color:var(--mu)">
+      ⚠️ <strong style="color:var(--vy)">PowerLahn-Dominanz:</strong> 7.767 t/a = 92 % aller quantifizierten Einsparungen. Die Wärmepumpe ist ein einzelnes Projekt. Alle anderen Maßnahmen zusammen sparen nur 659 t/a – weniger als 1,5 % der jährlich nötigen 49.101 t.
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-t" style="margin-bottom:10px">Ökosystem-THG-Bindung (nicht in Hauptbilanz)</div>
+    <div class="eco-g">
+      <div class="eco-c" style="border-left:3px solid var(--ac)"><div class="eco-l">Stadtwald</div><div class="eco-s">1.469 ha gesichert</div><div class="eco-v" style="color:var(--ac)">~533.898 t CO₂ gespeichert</div></div>
+      <div class="eco-c" style="border-left:3px solid var(--li)"><div class="eco-l">Pachtflächen</div><div class="eco-s">194 + 204 + 8 ha</div><div class="eco-v" style="color:var(--li)">37.784 t potenzielle Bindung</div></div>
+      <div class="eco-c" style="border-left:3px solid var(--te)"><div class="eco-l">Kleingärten</div><div class="eco-s">21,5 ha städtisch</div><div class="eco-v" style="color:var(--te)">Bindung nicht bezifferbar</div></div>
+      <div class="eco-c" style="border-left:3px solid var(--am)"><div class="eco-l">Gesamt Ökosystem</div><div class="eco-s">wissenschaftliche Schätzung</div><div class="eco-v" style="color:var(--am)">~38.000 t/a</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ VOLT ANALYSE -->
+<!--<div class="panel" id="panel-volt">
+  <div class="sh" style="color:var(--vy)">⚡ Volt-Analyse</div>
+  <div class="ss">Kritische Einordnung des Klimaberichts 2025 – Daten, Lücken, Forderungen</div>
+
+  <div class="alert">
+    <div class="at">Volt Gießen zum Klimabericht 2025</div>
+    <div class="ab">Der Bericht belegt: 2024 lief Gießen <strong style="color:var(--re)">in die falsche Richtung</strong>. Der THG-Ausstoß stieg um 24.852 t (+4,4 %) – statt zu sinken. Damit verschlechterte sich die Ausgangslage um das Doppelte der jährlich nötigen Einsparung (49.101 t). In 34 Jahren wurden 45,7 % der Pro-Kopf-Emissionen eingespart; in den verbleibenden 11 Jahren bis 2035 müssen noch 54,3 % weg – bei <strong style="color:var(--vy)">3,7-fachem Tempo</strong>. Das erfordert politische Konsequenzen, nicht nur Datendokumentation.</div>
+  </div>
+
+  <div class="kritik-g">
+    <div class="kk" style="border-top:3px solid var(--re)"><div class="kki">🚗</div><div class="kkt">Verkehr: +9,86 % – Systemversagen</div><div class="kkb">Verkehr ist mit 39 % der größte Emissionssektor und der mit Abstand schlechteste: +9,86 % in einem einzigen Jahr, dabei ist die Sektorenreduktion seit 1990 mit −21,6 % schon die schwächste aller Sektoren. Benzin stieg 2024 um 34,7 %. Nahverkehrsplan-Stufe 1 kommt erst Januar 2026 – nach 35 Jahren Klimapolitik.</div></div>
+    <div class="kk" style="border-top:3px solid var(--am)"><div class="kki">⚡</div><div class="kkt">Strommix-Falle: lokal nichts, national viel verloren</div><div class="kkb">Der Emissionsfaktor des Bundesstrommix stieg von 472 auf 505 g/kWh (+7 %). Lokale Effizienzgewinne werden durch den nationalen Mix zunichte gemacht. Strom-THG stieg +7,9 % obwohl der Verbrauch nur leicht stieg. Gießen kann diesen Faktor nicht steuern – macht ihn aber auch nicht zum Thema.</div></div>
+    <div class="kk" style="border-top:3px solid var(--te)"><div class="kki">🔥</div><div class="kkt">Fernwärme-Abhängigkeit ohne Redundanz</div><div class="kkb">Ein einziger Biomethan-Lieferant insolvent → KWK EE bricht um 81 % ein → Substitution durch Erdgas → EE-Anteil sinkt trotz PV-Zubau. Kritische Infrastruktur auf Monolieferketten zu stützen ist ein strukturelles Risiko, das der Bericht benennt, aber nicht als politisches Problem behandelt.</div></div>
+    <div class="kk" style="border-top:3px solid var(--vy)"><div class="kki">📅</div><div class="kkt">Maßnahmenplan läuft 2026 aus – kein Nachfolger</div><div class="kkb">Der aktuelle Klimaschutzmaßnahmenplan hat keinen sichtbaren Nachfolger für 2027–2030. Der Bericht wird 2025 vorgelegt, der Plan läuft 2026 aus – das ist ein Steuerungsversagen. Volt fordert Beschlussfassung des Anschlussplans noch in dieser Legislatur.</div></div>
+    <div class="kk" style="border-top:3px solid var(--li)"><div class="kki">☀️</div><div class="kkt">PV-Paradox: Mehr Leistung, weniger EE</div><div class="kkb">+21,8 % PV-Zubau und trotzdem sinkt der EE-Anteil am Strom von 45,9 % auf 42,4 %. Das zeigt die Grenzen einer kommunalen PV-Strategie ohne systemische Absicherung der Gesamterzeugung. Kommunale Solaroffensive ist notwendig, aber nicht hinreichend.</div></div>
+    <div class="kk" style="border-top:3px solid var(--pi)"><div class="kki">🌡️</div><div class="kkt">Witterungseffekt verdeckt Realität</div><div class="kkb">2023 und 2024 hatten Rekordtemperaturen (11,18 und 11,15 °C). Witterungsbereinigt spart Gießen im Wärmesektor deutlich weniger als ausgewiesen. Pro-Kopf-Wärme tatsächlich 1,93 t/EW – bereinigt 2,42 t/EW. Der echte Fortschritt ist 25 % kleiner als der berichtete.</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="cc">
+      <div class="cc-t">Tempo-Vergleich: geleistet vs. nötig</div>
+      <div class="cc-s">Prozentuale THG-Reduktion je Periode</div>
+      <div class="ch" style="height:200px"><canvas id="c-volt-tempo"></canvas></div>
+    </div>
+    <div class="cc">
+      <div class="cc-t">Sektorale Reduktionsleistung seit 1990</div>
+      <div class="cc-s">Wo wurde reduziert, wo nicht?</div>
+      <div class="ch" style="height:200px"><canvas id="c-volt-sektoren"></canvas></div>
+    </div>
+  </div>
+
+  <div class="cc">
+    <div class="cc-t" style="margin-bottom:8px">🔗 Schlüssel-Wechselwirkungen</div>
+    <div class="ww-g">
+      <div class="ww-c"><div class="ww-arrow">⬆️</div><div class="ww-body"><div class="ww-cause">Mehr Wärmepumpen + E-Autos</div><div class="ww-effect">↑ Stromverbrauch kurzfristig, ↓ Fossile langfristig</div></div></div>
+      <div class="ww-c"><div class="ww-arrow">🌍</div><div class="ww-body"><div class="ww-cause">Nationaler Emissionsfaktor steigt (+7 %)</div><div class="ww-effect">Lokale Effizienz wird durch Bundesmix konterkariert</div></div></div>
+      <div class="ww-c"><div class="ww-arrow">❄️</div><div class="ww-body"><div class="ww-cause">Milde Winter (Rekordtemperaturen)</div><div class="ww-effect">Scheineinsparung Wärme – witterungsbereinigt viel kleiner</div></div></div>
+      <div class="ww-c"><div class="ww-arrow">👥</div><div class="ww-body"><div class="ww-cause">+25 % Einwohner:innen seit 1990</div><div class="ww-effect">Pro-Kopf-Werte sinken stärker als Absolutwerte</div></div></div>
+    </div>
+  </div>
+</div>
+</div><!-- /panels -->
+
+<div class="pf">
+  <div class="pf-inner">
+    <p>Datenquelle: Klimaschutz- und Energiebericht 2025, Universitätsstadt Gießen · BISKO & Territorialprinzip · Alle Angaben ohne Gewähr</p>
+    <div><a href="volt-giessen.html">← Fraktionswebsite</a><a href="volt-giessen.html#kontakt">Kontakt</a></div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// DATEN
+// ══════════════════════════════════════════════════════════
+const D = {
+  ew: {
+    years:[1990,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
+    vals: [74497,84277,84455,85216,86324,87584,88605,89119,90370,90100,93795,93317]
+  },
+  primenergie: {
+    years:[1990,2019,2020,2021,2022,2023,2024],
+    Strom:   [1091419,516423,475152,465299,459724,500544,546363],
+    Heizöl:  [343539, 75201, 84586, 84586, 82560, 97233, 95962],
+    Benzin:  [371989, 278884,244214,241629,241629,197591,255795],
+    Diesel:  [376467, 540661,461363,470934,470727,515560,518107],
+    Erdgas:  [592105, 622175,532535,689528,591040,480832,466461],
+    Fernwärme:[210006,448949,474615,527778,477748,397879,365683],
+    Biomasse:[5958,  22923, 22716, 22716, 22171, 22378, 22489],
+    Umweltwärme:[0,  310,   314,   316,   394,   1629,  3185],
+    Biogase: [0,     493,   25878, 26219, 26773, 26143, 13805],
+    Biodiesel:[0,    44289, 54649, 48748, 48748, 45726, 45465],
+    Biobenzin:[0,    18962, 17551, 17678, 17678, 18147, 17827],
+    Flüssiggas:[0,   5938,  4805,  4466,  4466,  0,     4571],
+  },
+  endenergie: {
+    years:[1990,2020,2021,2022,2023,2024],
+    Strom:   [363225,353325,348406,340979,345705,348588],
+    Heizöl:  [290398,71693, 71693, 69975, 82412, 82633],
+    Benzin:  [323497,208303,206099,206099,168536,210947],
+    Diesel:  [345495,386982,395010,394837,432442,401777],
+    Erdgas:  [516066,464436,601315,515412,419263,391098],
+    Fernwärme:[245799,403292,448475,409753,374395,360748],
+    Biomasse:[5251,  20404, 20404, 19915, 20100, 20200],
+    Umweltwärme:[0,  629,   632,   788,   2978,  5441],
+    Biogase: [0,     21580, 22197, 22666, 22132, 11959],
+    Biodiesel:[0,    32054, 27394, 27394, 25696, 27834],
+    Biobenzin:[0,    9509,  9805,  9805,  10065, 10033],
+    Flüssiggas:[0,   4020,  3736,  3736,  0,     3824],
+  },
+  // Pro-Kopf THG regional
+  pkThg: {
+    years:[1990,2015,2019,2020,2021,2022,2023,2024],
+    strom:  [3.62,1.56,1.34,1.25,1.17,1.23,1.29,1.43],
+    waerme: [3.93,2.46,2.64,2.46,2.83,2.56,2.11,1.93],
+    verkehr:[3.09,2.42,2.60,2.30,2.28,2.28,2.19,2.42],
+    summe:  [10.64,6.44,6.58,6.01,6.28,6.07,5.59,5.78]
+  },
+  // Witterungsbereinigt
+  pkThgBer: {
+    years:[1990,2020,2021,2022,2023,2024],
+    strom:  [3.62,1.25,1.16,1.23,1.29,1.43],
+    waerme: [4.50,2.95,2.97,3.11,2.62,2.42],
+    verkehr:[3.09,2.30,2.28,2.28,2.19,2.42],
+    summe:  [11.21,6.50,6.41,6.62,6.09,6.27]
+  },
+  // Pro-Kopf Endenergie
+  pkEn: {
+    years:[1990,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024],
+    strom:  [4.61,4.26,3.85,4.23,4.20,4.09,3.96,3.91,3.76,3.69,3.58,3.64],
+    waerme: [14.20,11.45,10.82,12.51,11.96,11.47,11.56,10.83,12.62,11.25,9.56,9.20],
+    verkehr:[9.24,8.35,7.67,8.53,8.50,8.40,8.25,7.58,7.47,7.50,7.16,7.25],
+    summe:  [28.05,24.06,22.34,25.28,24.66,23.96,23.77,22.32,23.85,22.44,20.30,20.09]
+  },
+  // THG absolut nach Träger
+  thgAbs: {
+    years:[1990,2020,2021,2022,2023,2024],
+    Strom:   [316732,154756,152602,149349,163173,176037],
+    Heizöl:  [92927, 22798, 22798, 22252, 26207, 25864],
+    Benzin:  [106832,67098, 66380, 66380, 54282, 73131],
+    Diesel:  [107705,126462,129110,129054,141345,142385],
+    Erdgas:  [132629,114738,148570,127352,103613,100546],
+    Fernwärme:[67380,80153, 84490, 80790, 68094, 62068],
+    total:   [824392,574216,611373,582649,563227,588079],
+  },
+  // Zielpfad
+  zielpfad: {
+    years:[1990,2000,2010,2015,2020,2024,2025,2030,2035],
+    ist:  [10.64,10.47,8.04,6.44,6.01,5.78,null,null,null],
+    ziel: [10.64,null,8.04,null,6.01,null,5.25,2.63,0],
+    ber:  [11.21,null,null,null,6.50,6.27,null,null,null],
+    stZ:  [null,null,null,null,null,null,1.30,0.65,0],
+    wZ:   [null,null,null,null,null,null,1.755,0.877,0],
+    vZ:   [null,null,null,null,null,null,2.20,1.10,0],
+  },
+  // PV
+  pv: {
+    years:[2018,2019,2020,2021,2022,2023,2024],
+    kwp:  [17271,18224,20606,22182,24077,41059,49999]
+  },
+  // Eigenproduktion
+  eigen: {
+    years:[1990,2022,2023,2024],
+    kwkErdgas:[0.688,1.183,0.917,1.195],
+    kwkEE:    [0,    0.239,0.240,0.045],
+    pvLokal:  [0,    0.229,0.229,0.254],
+    wasser:   [0,    0.006,0.006,0.008]
+  },
+  // Bundesstrommix (MWh/EW/a)
+  bundesmix: {
+    years:[1990,2022,2023,2024],
+    kern:     [1.161,0.128,0.032,0.000],
+    braunkohle:[1.301,0.427,0.390,0.356],
+    steinkohle:[1.072,0.237,0.182,0.122],
+    gas:      [0.273,0.293,0.348,0.352],
+    wind:     [0,    0.460,0.636,0.623],
+    pv:       [0,    0.223,0.274,0.333],
+    biomasse: [0,    0.164,0.195,0.194]
+  }
+};
+
+// ══════════════════════════════════════════════════════════
+// CHART DEFAULTS
+// ══════════════════════════════════════════════════════════
+Chart.defaults.color='rgba(255,255,255,0.42)';
+Chart.defaults.borderColor='rgba(255,255,255,0.07)';
+Chart.defaults.font.family='Ubuntu,sans-serif';
+Chart.defaults.font.size=11;
+const grid={color:'rgba(255,255,255,0.06)'};
+const leg={labels:{boxWidth:10,boxHeight:10,padding:12,color:'rgba(255,255,255,0.6)',font:{size:11}}};
+function tip(unit=''){return{backgroundColor:'#1a1a30',borderColor:'rgba(255,255,255,0.1)',borderWidth:1,titleColor:'rgba(255,255,255,0.5)',bodyColor:'rgba(255,255,255,0.9)',callbacks:unit?{label:c=>{const v=c.parsed.y??c.parsed;return` ${typeof v==='number'?v.toLocaleString('de'):v} ${unit}`}}:{}};}
+const C={ac:'#7B61FF',li:'#B8F759',te:'#3ECFCF',am:'#F5A623',re:'#FF5C5C',vy:'#FFDE40',pi:'#FF6BB5',mu:'rgba(255,255,255,0.25)'};
+const CARRIERS=['Strom','Heizöl','Benzin','Diesel','Erdgas','Fernwärme'];
+const CARR_COLORS=[C.ac,C.am,C.pi,C.te,C.re,C.vy];
+
+// ══════════════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════════════
+const charts={};
+function mkChart(id,cfg){
+  const el=document.getElementById(id);
+  if(!el)return null;
+  if(charts[id]){charts[id].destroy();}
+  charts[id]=new Chart(el,cfg);
+  return charts[id];
+}
+function mkLeg(id,labels,colors){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=labels.map((l,i)=>`<div class="pli"><div class="pd" style="background:${colors[i]}"></div>${l}</div>`).join('');
+}
+function sumArr(arr){return arr.reduce((a,b)=>a+(b||0),0);}
+
+// ══════════════════════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════════════════════
+const rendered={};
+function lazyRender(tab){if(!rendered[tab]){rendered[tab]=true;builders[tab]?.();}}
+document.querySelectorAll('.tb').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tb').forEach(b=>b.classList.remove('act'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('act'));
+    btn.classList.add('act');
+    document.getElementById('panel-'+btn.dataset.tab).classList.add('act');
+    try { lazyRender(btn.dataset.tab); } catch(e) { console.error('render error:',e); }
+  });
+});
+
+// ══════════════════════════════════════════════════════════
+// BUILDERS
+// ══════════════════════════════════════════════════════════
+const builders={
+
+  // ── ÜBERSICHT ──────────────────────────────────────────
+  overview(){
+    rebuildOverviewThgChart();
+    // Sektor Pie
+    const sL=['Verkehr 39%','Haushalte 25%','GHD 22%','Industrie 13%','Kommunal 1%'];
+    const sC=[C.am,C.ac,C.te,C.li,C.mu];
+    mkChart('c-ov-pie',{type:'doughnut',data:{
+      labels:sL,
+      datasets:[{data:[39,25,22,13,1],backgroundColor:sC,borderWidth:2,borderColor:'#141428',hoverOffset:5}]
+    },options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}%`}}}}});
+    mkLeg('leg-ov-pie',sL,sC);
+    rebuildOverviewStackChart();
+    initOverviewRangeControls();
+    initOverviewStackRangeControls();
+  },
+
+  // ── THG ────────────────────────────────────────────────
+  thg(){
+    // Build toggles
+    const container=document.getElementById('thg-toggles');
+    CARRIERS.forEach((k,i)=>{
+      const btn=document.createElement('button');
+      btn.className='cbtn on';
+      btn.style.borderColor=CARR_COLORS[i];
+      btn.style.color=CARR_COLORS[i];
+      btn.style.background='transparent';
+      btn.textContent=k;
+      btn.dataset.carrier=k;
+      btn.addEventListener('click',()=>{
+        btn.classList.toggle('on');
+        if(btn.classList.contains('on')){btn.style.background='transparent';}
+        else{btn.style.background='rgba(0,0,0,0.3)';btn.style.opacity='0.4';}
+        rebuildThgChart();
+      });
+      container.appendChild(btn);
+    });
+    rebuildThgChart();
+
+    // Sektoren bar
+    mkChart('c-thg-sektoren',{type:'bar',indexAxis:'y',data:{
+      labels:['Verkehr','Haushalte','GHD','Industrie','Kommunal'],
+      datasets:[
+        {label:'2023',data:[206608,143004,130938,75114,7564],backgroundColor:'rgba(255,255,255,0.2)',borderRadius:4},
+        {label:'2024',data:[226979,149347,129661,74777,7317],backgroundColor:[C.re,C.re,C.li,C.li,C.li],borderRadius:4}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t')},scales:{x:{grid,ticks:{callback:v=>(v/1000).toFixed(0)+'k'}},y:{grid}}}});
+  },
+
+  // ── ENERGIE ────────────────────────────────────────────
+  energie(){
+    const mainCarriers=['Strom','Heizöl','Benzin','Diesel','Erdgas','Fernwärme','Biomasse','Umweltwärme','Biogase','Flüssiggas','Biodiesel','Biobenzin'];
+    const mainColors=[C.ac,C.am,C.pi,C.te,C.re,C.vy,C.li,'#80ffcc','#ff80ff','#aaffaa','#ffaa44','#ff44aa'];
+    const container=document.getElementById('en-toggles');
+    mainCarriers.forEach((k,i)=>{
+      const btn=document.createElement('button');
+      btn.className='cbtn on';
+      btn.style.borderColor=mainColors[i];btn.style.color=mainColors[i];btn.style.background='transparent';
+      btn.textContent=k;btn.dataset.carrier=k;
+      btn.addEventListener('click',()=>{
+        btn.classList.toggle('on');
+        btn.style.opacity=btn.classList.contains('on')?'1':'0.35';
+        rebuildEnChart();
+      });
+      container.appendChild(btn);
+    });
+    rebuildEnChart();
+
+    // Pie 2024
+    const enData=D.endenergie;
+    const pie24vals=mainCarriers.map(k=>(enData[k]?enData[k][enData.years.length-1]:0));
+    const total=sumArr(pie24vals);
+    mkChart('c-en-pie24',{type:'doughnut',data:{
+      labels:mainCarriers.map((k,i)=>`${k} ${Math.round(pie24vals[i]/total*100)}%`),
+      datasets:[{data:pie24vals,backgroundColor:mainColors,borderWidth:2,borderColor:'#141428'}]
+    },options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString('de')} MWh`}}}}});
+    mkLeg('leg-en-pie',mainCarriers.map((k,i)=>`${k} ${Math.round(pie24vals[i]/total*100)}%`),mainColors);
+
+    // Total trend
+    rebuildEnTotalChart();
+    initEnRangeControls();
+  },
+
+  // ── PRO KOPF ───────────────────────────────────────────
+  prokopf(){
+    buildPKChart();
+    initPKRangeControls();
+    // Reduktions-Bar
+    mkChart('c-pk-reduzierung',{type:'bar',indexAxis:'y',data:{
+      labels:['Strom','Wärme','Verkehr','Gesamt (THG)'],
+      datasets:[{
+        label:'Reduktion vs. 1990 (%)',
+        data:[60.5,50.9,21.6,43.2],
+        backgroundColor:[C.ac,C.te,C.am,C.vy],borderRadius:4
+      }]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` –${c.parsed.x} %`}}},scales:{x:{grid,max:70,ticks:{callback:v=>`–${v} %`}},y:{grid}}}});
+    rebuildEwChart();
+    initPKRangeControls();
+    initEwRangeControls();
+  },
+
+  // ── STROM & PV ─────────────────────────────────────────
+  pv(){
+    mkChart('c-pv-ausbau',{type:'bar',data:{
+      labels:D.pv.years,
+      datasets:[{
+        label:'PV-Leistung (kWp)',
+        data:D.pv.kwp,
+        backgroundColor:D.pv.years.map((_,i)=>i===6?C.vy:'rgba(255,222,64,0.45)'),
+        borderRadius:4
+      }]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tip('kWp')},scales:{x:{grid},y:{grid,ticks:{callback:v=>(v/1000).toFixed(0)+'k kWp'}}}}});
+
+    // EE Anteil Donut
+    const eeLabs=['EE 2023 (45,9%)','Konv. 2023','EE 2024 (42,4%)','Konv. 2024'];
+    const eeC=[C.li,'rgba(255,255,255,0.07)',C.am,'rgba(255,255,255,0.07)'];
+    mkChart('c-ee-pie',{type:'doughnut',data:{
+      labels:eeLabs,
+      datasets:[
+        {data:[45.9,54.1],backgroundColor:[C.li,'rgba(255,255,255,0.06)'],borderWidth:2,borderColor:'#141428',weight:1},
+        {data:[42.4,57.6],backgroundColor:[C.am,'rgba(255,255,255,0.06)'],borderWidth:2,borderColor:'#141428',weight:1}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,cutout:'40%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed} %`}}}}});
+    mkLeg('leg-ee',['EE 2023: 45,9 %','EE 2024: 42,4 %'],[C.li,C.am]);
+
+    // Eigenproduktion
+    const ep=D.eigen;
+    mkChart('c-eigen',{type:'bar',data:{
+      labels:ep.years,
+      datasets:[
+        {label:'KWK Erdgas',data:ep.kwkErdgas,backgroundColor:C.re,stack:'a'},
+        {label:'KWK EE (Biomethan)',data:ep.kwkEE,backgroundColor:C.li,stack:'a'},
+        {label:'PV lokal',data:ep.pvLokal,backgroundColor:C.vy,stack:'a'},
+        {label:'Wasserkraft',data:ep.wasser,backgroundColor:C.te,stack:'a'}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('MWh/EW')},scales:{x:{grid,stacked:true},y:{grid,stacked:true}}}});
+
+    // Bundesstrommix
+    const bm=D.bundesmix;
+    mkChart('c-bundesmix',{type:'bar',data:{
+      labels:bm.years,
+      datasets:[
+        {label:'Kernenergie',data:bm.kern,backgroundColor:'#888',stack:'a'},
+        {label:'Braunkohle',data:bm.braunkohle,backgroundColor:'#6b3e1a',stack:'a'},
+        {label:'Steinkohle',data:bm.steinkohle,backgroundColor:'#3a3a3a',stack:'a'},
+        {label:'Erdgas',data:bm.gas,backgroundColor:C.re,stack:'a'},
+        {label:'Wind',data:bm.wind,backgroundColor:C.te,stack:'a'},
+        {label:'PV',data:bm.pv,backgroundColor:C.vy,stack:'a'},
+        {label:'Biomasse',data:bm.biomasse,backgroundColor:C.li,stack:'a'}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('MWh/EW')},scales:{x:{grid,stacked:true},y:{grid,stacked:true}}}});
+  },
+
+  // ── WÄRME ──────────────────────────────────────────────
+  waerme(){
+    buildWaermeChart();
+    initWaermeRangeControls();
+    // Diff chart
+    mkChart('c-waerme-diff',{type:'bar',data:{
+      labels:[2020,2021,2022,2023,2024],
+      datasets:[
+        {label:'Tatsächlich',data:[2.46,2.83,2.56,2.11,1.93],backgroundColor:C.te,borderRadius:3},
+        {label:'Witterungsbereinigt',data:[2.95,2.97,3.11,2.62,2.42],backgroundColor:C.vy,borderRadius:3}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t/EW')},scales:{x:{grid},y:{grid,ticks:{callback:v=>v+' t'}}}}});
+    // Träger Pie
+    const wLabs=['Fernwärme 41%','Erdgas 45%','Heizöl 9%','Biomasse 2%','Sonstige 1%','Biogase 1%'];
+    const wC=[C.vy,C.re,C.am,C.li,C.te,C.ac];
+    const wV=[360748,391098,82633,20200,9265,11959];
+    mkChart('c-waerme-pie',{type:'doughnut',data:{
+      labels:wLabs,
+      datasets:[{data:wV,backgroundColor:wC,borderWidth:2,borderColor:'#141428'}]
+    },options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString('de')} MWh`}}}}});
+    mkLeg('leg-waerme-pie',wLabs,wC);
+  },
+
+  // ── ZIELPFAD ───────────────────────────────────────────
+  zielpfad(){
+    buildZPChart();
+    // Lücken-Chart
+    const zp=D.zielpfad;
+    const istYears=[1990,2000,2010,2015,2020,2024,2030];
+    const istVals=istYears.map(y=>{
+      const idx=zp.years.indexOf(y);
+      return idx>=0?zp.ist[idx]:null;
+    });
+    const zielVals=istYears.map(y=>{
+      const idx=zp.years.indexOf(y);
+      return idx>=0?zp.ziel[idx]:null;
+    });
+    mkChart('c-zp-luecke',{type:'bar',data:{
+      labels:istYears.map(String),
+      datasets:[
+        {label:'Ist-Wert',data:istVals,backgroundColor:C.ac,borderRadius:4},
+        {label:'Zielpfad',data:zielVals,backgroundColor:'rgba(184,247,89,0.3)',borderRadius:4,borderColor:C.li,borderWidth:1}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t/EW')},scales:{x:{grid},y:{grid,ticks:{callback:v=>v+' t'}}}}});
+  },
+
+  // ── MASSNAHMEN ─────────────────────────────────────────
+  massnahmen(){
+    mkChart('c-m-status',{type:'bar',indexAxis:'y',data:{
+      labels:['Energie','Mobilität','Stadtentwicklung','Öffentlichkeitsarbeit'],
+      datasets:[
+        {label:'Umgesetzt',data:[8,11,3,4],backgroundColor:C.ac,borderRadius:2},
+        {label:'In Umsetzung',data:[23,10,21,15],backgroundColor:C.li,borderRadius:2},
+        {label:'In Planung',data:[8,14,6,2],backgroundColor:C.am,borderRadius:[0,4,4,0]},
+        {label:'Verworfen',data:[0,0,0,1],backgroundColor:C.re,borderRadius:[0,4,4,0]}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('Maßnahmen')},scales:{x:{grid,stacked:true},y:{grid,stacked:true}}}});
+
+    mkChart('c-m-savings',{type:'bar',indexAxis:'y',data:{
+      labels:['PowerLahn Wärmepumpe','Sanierungen Wohnbau','PV Wohnbau','PV Freibad','PV Bürgerhaus','PV Klärwerk','Pumpentausch','Beleuchtung SWG'],
+      datasets:[{
+        label:'THG-Einsparung (t/a)',
+        data:[7767,300.7,293,40.4,10.4,7.6,6.8,0.3],
+        backgroundColor:[C.te,C.li,C.vy,C.vy,C.vy,C.vy,C.ac,C.mu],
+        borderRadius:4
+      }]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tip('t/a')},scales:{x:{grid},y:{grid,ticks:{font:{size:10}}}}}});
+  },
+
+  // ── VOLT ANALYSE ───────────────────────────────────────
+  volt(){
+    mkChart('c-volt-tempo',{type:'bar',data:{
+      labels:['Ø 1990–2024\n(34 Jahre)','Ø 2020–2024\n(4 Jahre)','Nötig 2024–2035\n(11 Jahre)'],
+      datasets:[{
+        label:'Ø jährliche THG-Reduktion (t/a)',
+        data:[6862,null,null],
+        backgroundColor:C.mu,borderRadius:4
+      },{
+        label:'Ø Ist (aktuell)',
+        data:[null,-2246,null],
+        backgroundColor:C.re,borderRadius:4
+      },{
+        label:'Nötig (Ziel)',
+        data:[null,null,49101],
+        backgroundColor:C.am,borderRadius:4
+      }]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t/a')},scales:{x:{grid},y:{grid,ticks:{callback:v=>Math.abs(v/1000).toFixed(0)+'k t'}}}}});
+
+    mkChart('c-volt-sektoren',{type:'bar',data:{
+      labels:['Strom','Wärme','Verkehr'],
+      datasets:[
+        {label:'Reduktion 1990→2024 (%)',data:[60.5,50.9,21.6],backgroundColor:[C.ac,C.te,C.am],borderRadius:4},
+        {label:'Noch nötig bis 2035 (pp)',data:[100,100,100],backgroundColor:'rgba(255,255,255,0.05)',borderRadius:4,borderWidth:1,borderColor:'rgba(255,255,255,0.15)'}
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y} %`}}},scales:{x:{grid},y:{grid,max:100,ticks:{callback:v=>v+' %'}}}}});
+  }
+};
+
+// ══════════════════════════════════════════════════════════
+// INTERAKTIVE UPDATE-FUNKTIONEN
+// ══════════════════════════════════════════════════════════
+
+// ── THG MODE ──────────────────────────────────────────────
+const ovRange={start:0,end:D.thgAbs.years.length-1};
+const ovStackRange={start:0,end:D.thgAbs.years.length-1};
+const enRange={start:0,end:D.primenergie.years.length-1};
+const pkRange={start:0,end:D.pkThg.years.length-1};
+const ewRange={start:0,end:D.ew.years.length-1};
+const waermeRange={start:0,end:4};
+function updateOvRangeLabel(){
+  const years=D.thgAbs.years;
+  const el=document.getElementById('ov-range-label');
+  if(el) el.textContent=`${years[ovRange.start]} – ${years[ovRange.end]}`;
+}
+function updateOvStackRangeLabel(){
+  const years=D.thgAbs.years;
+  const el=document.getElementById('ov-stack-range-label');
+  if(el) el.textContent=`${years[ovStackRange.start]} – ${years[ovStackRange.end]}`;
+}
+function updateEnRangeLabel(){
+  const years=D.primenergie.years;
+  const el=document.getElementById('en-total-range-label');
+  if(el) el.textContent=`${years[enRange.start]} – ${years[enRange.end]}`;
+}
+function updatePKRangeLabel(){
+  const years=D.pkThg.years;
+  const el=document.getElementById('pk-range-label');
+  if(el) el.textContent=`${years[pkRange.start]} – ${years[pkRange.end]}`;
+}
+function updateEwRangeLabel(){
+  const years=D.ew.years;
+  const el=document.getElementById('ew-range-label');
+  if(el) el.textContent=`${years[ewRange.start]} – ${years[ewRange.end]}`;
+}
+function updateWaermeRangeLabel(){
+  const years=[2020,2021,2022,2023,2024];
+  const el=document.getElementById('waerme-range-label');
+  if(el) el.textContent=`${years[waermeRange.start]} – ${years[waermeRange.end]}`;
+}
+function initOverviewRangeControls(){
+  const years=D.thgAbs.years;
+  const start=document.getElementById('ov-start');
+  const end=document.getElementById('ov-end');
+  if(!start||!end) return;
+  start.max=years.length-1; end.max=years.length-1;
+  start.value=ovRange.start; end.value=ovRange.end;
+  const update=(event)=>{
+    let s=+start.value; let e=+end.value;
+    if(s>e){ if(event.target===start){ e=s; end.value=e; } else { s=e; start.value=s; }}
+    ovRange.start=s; ovRange.end=e;
+    updateOvRangeLabel();
+    rebuildOverviewThgChart();
+  };
+  start.addEventListener('input',update);
+  end.addEventListener('input',update);
+  updateOvRangeLabel();
+}
+function initOverviewStackRangeControls(){
+  const years=D.thgAbs.years;
+  const start=document.getElementById('ov-stack-start');
+  const end=document.getElementById('ov-stack-end');
+  if(!start||!end) return;
+  start.max=years.length-1; end.max=years.length-1;
+  start.value=ovStackRange.start; end.value=ovStackRange.end;
+  const update=(event)=>{
+    let s=+start.value; let e=+end.value;
+    if(s>e){ if(event.target===start){ e=s; end.value=e; } else { s=e; start.value=s; }}
+    ovStackRange.start=s; ovStackRange.end=e;
+    updateOvStackRangeLabel();
+    rebuildOverviewStackChart();
+  };
+  start.addEventListener('input',update);
+  end.addEventListener('input',update);
+  updateOvStackRangeLabel();
+}
+function initEnRangeControls(){
+  const years=D.primenergie.years;
+  const start=document.getElementById('en-total-start');
+  const end=document.getElementById('en-total-end');
+  if(!start||!end) return;
+  start.max=years.length-1; end.max=years.length-1;
+  start.value=enRange.start; end.value=enRange.end;
+  const update=(event)=>{
+    let s=+start.value; let e=+end.value;
+    if(s>e){ if(event.target===start){ e=s; end.value=e; } else { s=e; start.value=s; }}
+    enRange.start=s; enRange.end=e;
+    updateEnRangeLabel();
+    rebuildEnTotalChart();
+  };
+  start.addEventListener('input',update);
+  end.addEventListener('input',update);
+  updateEnRangeLabel();
+}
+function initPKRangeControls(){
+  const years=D.pkThg.years;
+  const start=document.getElementById('pk-start');
+  const end=document.getElementById('pk-end');
+  if(!start||!end) return;
+  start.max=years.length-1; end.max=years.length-1;
+  start.value=pkRange.start; end.value=pkRange.end;
+  const update=(event)=>{
+    let s=+start.value; let e=+end.value;
+    if(s>e){ if(event.target===start){ e=s; end.value=e; } else { s=e; start.value=s; }}
+    pkRange.start=s; pkRange.end=e;
+    updatePKRangeLabel();
+    buildPKChart();
+  };
+  start.addEventListener('input',update);
+  end.addEventListener('input',update);
+  updatePKRangeLabel();
+}
+function initEwRangeControls(){
+  const years=D.ew.years;
+  const start=document.getElementById('ew-start');
+  const end=document.getElementById('ew-end');
+  if(!start||!end) return;
+  start.max=years.length-1; end.max=years.length-1;
+  start.value=ewRange.start; end.value=ewRange.end;
+  const update=(event)=>{
+    let s=+start.value; let e=+end.value;
+    if(s>e){ if(event.target===start){ e=s; end.value=e; } else { s=e; start.value=s; }}
+    ewRange.start=s; ewRange.end=e;
+    updateEwRangeLabel();
+    rebuildEwChart();
+  };
+  start.addEventListener('input',update);
+  end.addEventListener('input',update);
+  updateEwRangeLabel();
+}
+function initWaermeRangeControls(){
+  const years=[2020,2021,2022,2023,2024];
+  const start=document.getElementById('waerme-start');
+  const end=document.getElementById('waerme-end');
+  if(!start||!end) return;
+  start.max=years.length-1; end.max=years.length-1;
+  start.value=waermeRange.start; end.value=waermeRange.end;
+  const update=(event)=>{
+    let s=+start.value; let e=+end.value;
+    if(s>e){ if(event.target===start){ e=s; end.value=e; } else { s=e; start.value=s; }}
+    waermeRange.start=s; waermeRange.end=e;
+    updateWaermeRangeLabel();
+    buildWaermeChart();
+  };
+  start.addEventListener('input',update);
+  end.addEventListener('input',update);
+  updateWaermeRangeLabel();
+}
+let thgMode='abs';
+function setThgMode(mode){
+  thgMode=mode;
+  document.getElementById('thg-abs').classList.toggle('on',mode==='abs');
+  document.getElementById('thg-cap').classList.toggle('on',mode==='cap');
+  rebuildThgChart();
+}
+function rebuildThgChart(){
+  const active=Array.from(document.querySelectorAll('#thg-toggles .cbtn.on')).map(b=>b.dataset.carrier);
+  const years=D.thgAbs.years.slice(ovRange.start,ovRange.end+1);
+  const ewByYear={};D.ew.years.forEach((y,i)=>{ewByYear[y]=D.ew.vals[i];});
+  const datasets=CARRIERS.filter(k=>active.includes(k)).map((k,i)=>({
+    label:k,
+    data:D.thgAbs[k].slice(ovRange.start,ovRange.end+1).map((v,j)=>{
+      const yr=D.thgAbs.years[ovRange.start+j];return thgMode==='cap'?(ewByYear[yr]?+(v/ewByYear[yr]).toFixed(3):null):v;
+    }),
+    backgroundColor:CARR_COLORS[i],stack:'a'
+  }));
+  const unit=thgMode==='cap'?'t/EW':'t';
+  mkChart('c-thg-traeger',{type:'bar',data:{labels:years.map(String),datasets},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip(unit)},
+      scales:{x:{grid,stacked:true},y:{grid,stacked:true,ticks:{callback:v=>thgMode==='cap'?v.toFixed(1)+' t':(v/1000).toFixed(0)+'k'}}}}});
+}
+function rebuildOverviewThgChart(){
+  const years=D.thgAbs.years.slice(ovRange.start,ovRange.end+1);
+  const labels=[...years];
+  if(!labels.includes(2035)) labels.push(2035);
+  const actualData=years.map((_,i)=>D.thgAbs.total[ovRange.start+i]||0);
+  const lastValue=actualData[actualData.length-1] ?? 0;
+  const targetData=labels.map(y=>{
+    if(y===2035) return 0;
+    if(y===years[years.length-1]) return lastValue;
+    return null;
+  });
+  mkChart('c-ov-thg',{type:'line',data:{
+    labels:labels.map(String),
+    datasets:[{
+      label:'THG gesamt (t/a)',
+      data:[...actualData,null],
+      borderColor:C.ac,backgroundColor:'rgba(123,97,255,0.12)',fill:true,tension:0.35,pointRadius:4,pointBackgroundColor:C.ac,borderWidth:2.5,spanGaps:true
+    },{
+      label:'Ziel 2035: 0',
+      data:targetData,
+      borderColor:C.li,borderDash:[4,4],pointRadius:0,borderWidth:2,fill:false,spanGaps:true
+    }]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t')},scales:{x:{grid},y:{grid,ticks:{callback:v=>(v/1000).toFixed(0)+'k t'}}}}});
+}
+function rebuildOverviewStackChart(){
+  const years=D.thgAbs.years.slice(ovStackRange.start,ovStackRange.end+1);
+  mkChart('c-ov-stack',{type:'bar',data:{
+    labels:years,
+    datasets:CARRIERS.map((k,i)=>({
+      label:k,data:D.thgAbs[k].slice(ovStackRange.start,ovStackRange.end+1),backgroundColor:CARR_COLORS[i],stack:'a'
+    }))
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t')},scales:{x:{grid,stacked:true},y:{grid,stacked:true,ticks:{callback:v=>(v/1000).toFixed(0)+'k'}}}}});
+}
+function rebuildEnTotalChart(){
+  const allCarriers=['Strom','Heizöl','Benzin','Diesel','Erdgas','Fernwärme','Biomasse','Umweltwärme','Biogase','Biodiesel','Biobenzin','Flüssiggas'];
+  const primYears=D.primenergie.years.slice(enRange.start,enRange.end+1);
+  const endYearMap={};D.endenergie.years.forEach((y,i)=>{endYearMap[y]=i;});
+  const primTotals=primYears.map((_,i)=>allCarriers.reduce((s,k)=>s+(D.primenergie[k]?.[enRange.start+i]||0),0));
+  const endTotals=primYears.map((y)=>{
+    const idx=endYearMap[y];
+    if(idx===undefined)return null;
+    return allCarriers.reduce((s,k)=>s+(D.endenergie[k]?.[idx]||0),0);
+  });
+  mkChart('c-en-total',{type:'line',data:{
+    labels:primYears,
+    datasets:[
+      {label:'Primärenergie',data:primTotals,borderColor:C.ac,backgroundColor:'rgba(123,97,255,0.08)',fill:true,tension:0.3,pointRadius:3,borderWidth:2},
+      {label:'Endenergie',data:endTotals,borderColor:C.te,borderDash:[4,3],pointRadius:3,borderWidth:2,fill:false,spanGaps:true}
+    ]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('MWh')},scales:{x:{grid},y:{grid,ticks:{callback:v=>(v/1e6).toFixed(1)+'M'}}}}});
+}
+function rebuildEwChart(){
+  const years=D.ew.years.slice(ewRange.start,ewRange.end+1);
+  const vals=D.ew.vals.slice(ewRange.start,ewRange.end+1);
+  mkChart('c-ew',{type:'line',data:{
+    labels:years,
+    datasets:[{label:'Einwohner:innen',data:vals,borderColor:C.li,backgroundColor:'rgba(184,247,89,0.08)',fill:true,tension:0.3,pointRadius:3,borderWidth:2}]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:tip('EW')},scales:{x:{grid},y:{grid,ticks:{callback:v=>(v/1000).toFixed(0)+'k'}}}}});
+}
+
+// ── ENERGIE MODE ──────────────────────────────────────────
+let enMode='prim';
+function setEnMode(mode){
+  enMode=mode;
+  document.getElementById('en-prim').classList.toggle('on',mode==='prim');
+  document.getElementById('en-end').classList.toggle('on',mode==='end');
+  document.getElementById('en-sub').textContent='MWh/a · '+(mode==='prim'?'Primärenergie':'Endenergie');
+  rebuildEnChart();
+}
+function rebuildEnChart(){
+  const active=Array.from(document.querySelectorAll('#en-toggles .cbtn.on')).map(b=>b.dataset.carrier);
+  const src=enMode==='prim'?D.primenergie:D.endenergie;
+  const mainCarriers=['Strom','Heizöl','Benzin','Diesel','Erdgas','Fernwärme','Biomasse','Umweltwärme','Biogase','Flüssiggas','Biodiesel','Biobenzin'];
+  const mainColors=[C.ac,C.am,C.pi,C.te,C.re,C.vy,C.li,'#80ffcc','#ff80ff','#aaffaa','#ffaa44','#ff44aa'];
+  const datasets=mainCarriers.filter(k=>active.includes(k)).map(k=>({
+    label:k,data:src[k]||[],backgroundColor:mainColors[mainCarriers.indexOf(k)],stack:'a'
+  }));
+  mkChart('c-en-main',{type:'bar',data:{labels:src.years.map(String),datasets},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('MWh')},
+      scales:{x:{grid,stacked:true},y:{grid,stacked:true,ticks:{callback:v=>(v/1e6).toFixed(1)+'M'}}}}});
+}
+
+// ── PRO KOPF MODE ─────────────────────────────────────────
+let pkMode='thg',pkSectors={strom:true,waerme:true,verkehr:true,summe:true},pkWitter='real';
+function setPKMode(mode){
+  pkMode=mode;
+  document.getElementById('pk-thg').classList.toggle('on',mode==='thg');
+  document.getElementById('pk-en').classList.toggle('on',mode==='en');
+  const t=mode==='thg'?'THG-Emissionen':'Endenergie';
+  document.getElementById('pk-title').textContent=`${t} pro Kopf nach Sektor 1990–2024`;
+  buildPKChart();
+}
+function togglePK(s,btn){pkSectors[s]=!pkSectors[s];btn.classList.toggle('on',pkSectors[s]);buildPKChart();}
+function setPKWitter(mode){
+  pkWitter=mode;
+  document.getElementById('pk-real').classList.toggle('on',mode==='real');
+  document.getElementById('pk-ber').classList.toggle('on',mode==='ber');
+  document.getElementById('pk-sub').textContent=`${pkMode==='thg'?'t CO₂eq':'MWh'}/EW/a · ${mode==='real'?'tatsächlich':'witterungsbereinigt'}`;
+  buildPKChart();
+}
+function buildPKChart(){
+  const isThg=pkMode==='thg';
+  const isBer=pkWitter==='ber';
+  const src=isThg?(isBer?D.pkThgBer:D.pkThg):D.pkEn;
+  const unit=isThg?'t/EW':'MWh/EW';
+  const startYear=D.pkThg.years[pkRange.start];
+  const endYear=D.pkThg.years[pkRange.end];
+  const indices=src.years.map((y,i)=>y>=startYear&&y<=endYear?i:-1).filter(i=>i>=0);
+  const labels=indices.map(i=>src.years[i]);
+  const getData=key=>indices.map(i=>src[key][i]);
+  const datasets=[];
+  if(pkSectors.strom) datasets.push({label:'Strom',data:getData('strom'),borderColor:C.ac,backgroundColor:'rgba(123,97,255,0.08)',fill:false,tension:0.3,pointRadius:4,borderWidth:2.5});
+  if(pkSectors.waerme) datasets.push({label:'Wärme',data:getData('waerme'),borderColor:C.te,backgroundColor:'rgba(62,207,207,0.08)',fill:false,tension:0.3,pointRadius:4,borderWidth:2.5});
+  if(pkSectors.verkehr) datasets.push({label:'Verkehr',data:getData('verkehr'),borderColor:C.am,backgroundColor:'rgba(245,166,35,0.08)',fill:false,tension:0.3,pointRadius:4,borderWidth:2.5});
+  if(pkSectors.summe) datasets.push({label:'Gesamt',data:getData('summe'),borderColor:C.vy,borderWidth:2.5,borderDash:[0],pointRadius:5,fill:false,tension:0.3});
+  updatePKRangeLabel();
+  mkChart('c-pk-main',{type:'line',data:{labels,datasets},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip(unit)},
+      scales:{x:{grid},y:{grid,min:0,ticks:{callback:v=>v.toFixed(1)+' '+unit.split('/')[0]}}}}});
+}
+
+// ── WÄRME MODE ────────────────────────────────────────────
+let waermeModus='real',waermeMetrik='thg';
+function setWaerme(m){
+  waermeModus=m;
+  ['w-real','w-ber','w-both'].forEach(id=>document.getElementById(id).classList.toggle('on',id.split('-')[1]===m));
+  buildWaermeChart();
+}
+function setWaermeMetrik(m){
+  waermeMetrik=m;
+  document.getElementById('w-thg').classList.toggle('on',m==='thg');
+  document.getElementById('w-en').classList.toggle('on',m==='en');
+  buildWaermeChart();
+}
+function buildWaermeChart(){
+  const isThg=waermeMetrik==='thg';
+  const unit=isThg?'t/EW':'MWh/EW';
+  const years=[2020,2021,2022,2023,2024].slice(waermeRange.start,waermeRange.end+1);
+  const real=isThg?[2.46,2.83,2.56,2.11,1.93].slice(waermeRange.start,waermeRange.end+1):[10.83,12.62,11.25,9.56,9.20].slice(waermeRange.start,waermeRange.end+1);
+  const ber=isThg?[2.95,2.97,3.11,2.62,2.42].slice(waermeRange.start,waermeRange.end+1):[13.5,14.17,13.29,11.97,11.62].slice(waermeRange.start,waermeRange.end+1);
+  const datasets=[];
+  if(waermeModus==='real'||waermeModus==='both') datasets.push({label:'Tatsächlich',data:real,borderColor:C.te,backgroundColor:'rgba(62,207,207,0.1)',fill:true,tension:0.3,pointRadius:5,borderWidth:2.5});
+  if(waermeModus==='ber'||waermeModus==='both') datasets.push({label:'Witterungsbereinigt',data:ber,borderColor:C.vy,borderDash:waermeModus==='both'?[6,3]:[],backgroundColor:'rgba(255,222,64,0.08)',fill:true,tension:0.3,pointRadius:5,borderWidth:2.5});
+  document.getElementById('w-title').textContent=`Wärme-${isThg?'THG':'Endenergie'}: ${waermeModus==='both'?'Vergleich tatsächlich & witterungsbereinigt':waermeModus==='ber'?'witterungsbereinigt':'tatsächlich'} ${years[0]}–${years[years.length-1]}`;
+  mkChart('c-waerme-main',{type:'line',data:{labels:years.map(String),datasets},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip(unit)},
+      scales:{x:{grid},y:{grid,min:0,ticks:{callback:v=>v.toFixed(2)+' '+unit.split('/')[0]}}}}});
+}
+
+// ── ZIELPFAD MODE ─────────────────────────────────────────
+let zpView='gesamt',zpWitter='real';
+function setZP(v){zpView=v;document.getElementById('zp-gesamt').classList.toggle('on',v==='gesamt');document.getElementById('zp-sektoren').classList.toggle('on',v==='sektoren');buildZPChart();}
+function setZPWitter(v){zpWitter=v;document.getElementById('zp-real').classList.toggle('on',v==='real');document.getElementById('zp-ber').classList.toggle('on',v==='ber');buildZPChart();}
+function buildZPChart(){
+  const isBer=zpWitter==='ber';
+  const isSek=zpView==='sektoren';
+  const zp=D.zielpfad;
+  let datasets;
+  if(!isSek){
+    const ist=isBer?zp.ber:zp.ist;
+    datasets=[
+      {label:'Ist-Wert',data:ist,borderColor:C.ac,backgroundColor:'rgba(123,97,255,0.1)',fill:true,tension:0.3,pointRadius:5,pointBackgroundColor:C.ac,borderWidth:2.5,spanGaps:false},
+      {label:'Zielpfad 2035',data:zp.ziel,borderColor:C.li,borderDash:[6,3],pointRadius:3,borderWidth:2,fill:false,tension:0.3,spanGaps:true}
+    ];
+  } else {
+    // Sektoren mit Zielwerten
+    const pkData=isBer?D.pkThgBer:D.pkThg;
+    const sYears=[1990,2015,2020,2023,2024,2025,2030,2035];
+    const strom=   [3.62,1.56,1.25,1.29,1.43,1.30,0.65,0];
+    const waerme=  [3.93,2.46,2.46,2.11,1.93,1.755,0.877,0];
+    const verkehr= [3.09,2.42,2.30,2.19,2.42,2.20,1.10,0];
+    const istIdx=  sYears.indexOf(2024);
+    // Split each sector into Ist (solid) and Ziel (dashed) datasets
+    datasets=[
+      {label:'Strom Ist',   data:strom.map((v,i)=>i<=istIdx?v:null),  borderColor:C.ac,fill:false,tension:0.3,pointRadius:4,borderWidth:2.5,spanGaps:false},
+      {label:'Strom Ziel',  data:strom.map((v,i)=>i>=istIdx?v:null),  borderColor:C.ac,fill:false,tension:0.3,pointRadius:3,borderWidth:1.5,borderDash:[5,3],spanGaps:false},
+      {label:'Wärme Ist',   data:waerme.map((v,i)=>i<=istIdx?v:null), borderColor:C.te,fill:false,tension:0.3,pointRadius:4,borderWidth:2.5,spanGaps:false},
+      {label:'Wärme Ziel',  data:waerme.map((v,i)=>i>=istIdx?v:null), borderColor:C.te,fill:false,tension:0.3,pointRadius:3,borderWidth:1.5,borderDash:[5,3],spanGaps:false},
+      {label:'Verkehr Ist', data:verkehr.map((v,i)=>i<=istIdx?v:null),borderColor:C.am,fill:false,tension:0.3,pointRadius:4,borderWidth:2.5,spanGaps:false},
+      {label:'Verkehr Ziel',data:verkehr.map((v,i)=>i>=istIdx?v:null),borderColor:C.am,fill:false,tension:0.3,pointRadius:3,borderWidth:1.5,borderDash:[5,3],spanGaps:false},
+    ];
+    mkChart('c-zp-main',{type:'line',data:{labels:sYears.map(String),datasets},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t/EW')},
+        scales:{x:{grid},y:{grid,min:0,ticks:{callback:v=>v.toFixed(1)+' t'}}}}});
+    document.getElementById('zp-title').textContent='Sektoraler Zielpfad – Ist und Ziel';
+    return;
+  }
+  document.getElementById('zp-title').textContent=`Ist-Pfad vs. Zielpfad 2035 (${isBer?'witterungsbereinigt':'tatsächlich'})`;
+  mkChart('c-zp-main',{type:'line',data:{labels:zp.years.map(String),datasets},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:leg,tooltip:tip('t/EW')},
+      scales:{x:{grid},y:{grid,min:0,ticks:{callback:v=>v.toFixed(1)+' t'}}}}});
+}
+
+// ══════════════════════════════════════════════════════════
+// START
+// ══════════════════════════════════════════════════════════
+try { lazyRender('overview'); } catch(e) { console.error('overview render error:',e); }
+</script>
+</body>
+</html>
