@@ -1,0 +1,5 @@
+## Digitalisierung, Verwaltung & Smart City
+
+Die Digitalisierung verändert in Gießen das tägliche Leben – von Verwaltung über Mobilität bis hin zu Bildung und Kultur. Sie bietet enorme Chancen, Prozesse effizienter, transparenter und bürgernäher zu gestalten. Gleichzeitig stehen Kommunen vor der Herausforderung, Datenschutz, Nachhaltigkeit und Teilhabe in Einklang zu bringen und niemanden zurückzulassen.
+Die digitale Verwaltung in der Region startete spät: 2019 gab es nur acht Online-Verfahren; 2024 wurden bereits rund 50 digitale Angebote umgesetzt und etwa 15.000 Anträge online gestellt. Im aktuellen Smart-City-Ranking 2025 von Haselhorst Associates belegt Gießen Platz 154 von 417 Städten, während Bad Nauheim sogar Platz 6 erreicht. Auch bei der digitalen Infrastruktur besteht Nachholbedarf: Glasfaserverbindungen bis in die Haushalte sind bislang nur in wenigen Stadtteilen und Orten verfügbar.
+Volt versteht Digitalisierung und Smart City nicht als Selbstzweck, sondern als Werkzeuge, um das Leben der Menschen konkret zu verbessern – einfacher, schneller und inklusiver.

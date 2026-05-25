@@ -1,0 +1,10 @@
+## Sicherheit, Ordnung & Justiz
+
+Sicherheit und Gerechtigkeit sind Grundpfeiler unseres gesellschaftlichen Zusammenlebens. Sie entstehen nicht allein durch Kontrolle und Strafen, sondern vor allem durch Prävention, Transparenz und Vertrauen. Wo Menschen sich sicher bewegen können, entsteht Freiheit - und diese Freiheit hat nur dann Wert, wenn sie für alle gilt.
+In Gießen leben 92.111 Menschen aus 159 Nationen, dazu kommen etwa 42.500 Studierende (JLU: 25.000, THM: 15.000, plus weitere Hochschulen), die die Stadt prägen.
+Das Durchschnittsalter liegt bei 38 Jahren – wir sind die jüngste Stadt Hessens. Diese Diversität und Dynamik ist unsere Stärke. Sie stellt uns aber auch vor Aufgaben: Wie gestalten wir öffentliche Räume, in denen sich alle Menschen - unabhängig von Beruf, Alter, Herkunft oder körperlichen Voraussetzungen - frei und sicher bewegen können? Wie schaffen wir einen Ort, an dem Menschen sich nicht nur physisch sicher fühlen, sondern auch von Diskriminierung und Hass verschont bleiben?
+
+Die Kriminalstatistik 2024 zeigt ein insgesamt erfreuliches Bild: Unsere Region gehört zu den sichereren in Hessen, die Aufklärungsquote liegt über dem Landes- und Bundesschnitt. Doch es gibt Entwicklungen, die uns aufhorchen lassen: Gewaltkriminalität nimmt zu, politisch motivierte Straftaten und Hasskriminalität sind deutlich gestiegen.
+Übergriffe aus rechtsextremem Spektrum nehmen besorgniserregend zu. Gleichzeitig zeigt der Armutsbericht des Landkreises Gießen (2024) kritische soziale Herausforderungen: Die Kinderarmutsquote (unter 6 Jahren) liegt bei 24,1% (2023), die Armutsgefährdung unter 15-Jährigen bei 15,5% (2022). Armut ist ein Sicherheitsrisiko für die Betroffenen und zugleich ein Gerechtigkeitsproblem für uns alle.
+
+Volt setzt auf Sicherheitspolitik, die pragmatisch handelt, aber gerecht denkt. Wir kombinieren wirksame Prävention mit offenem Dialog und begegnen erkannten Risiken mit umfassender Inklusion. Keine Sicherheit auf dem Rücken von Minderheiten. Keine Freiheit auf Kosten der Vielen. Vertrauen durch Transparenz - das ist unser Ansatz.
