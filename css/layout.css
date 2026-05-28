@@ -43,8 +43,7 @@
 .brand-logo-svg {
     height: 38px;
     width: auto;
-    fill: var(--color-primary);
-    transition: fill var(--transition-normal), transform var(--transition-fast);
+    transition: transform var(--transition-fast);
 }
 
 .brand-logo-svg:hover {
@@ -164,10 +163,10 @@
     gap: var(--space-4);
 }
 
-.footer-col-logo svg {
-    fill: #FFFFFF !important; /* Force white logo in footer */
+.footer-logo-img {
     height: 48px;
     width: auto;
+    filter: brightness(0) invert(1);
 }
 
 .footer-title {
