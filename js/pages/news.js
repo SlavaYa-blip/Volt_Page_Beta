@@ -94,7 +94,7 @@ export const newsPage = {
                             <p class="featured-summary">${featured.summary}</p>
                             <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
                                 <button class="btn btn-primary news-detail-trigger" data-id="${featured.id}">Vollständigen Artikel lesen</button>
-                                <a href="klimabericht.html" class="btn btn-outline">Das Datendashboard öffnen</a>
+                                <a href="klimabericht_volt.html" class="btn btn-outline">Das Datendashboard öffnen</a>
                             </div>
                         </div>
                     </article>
