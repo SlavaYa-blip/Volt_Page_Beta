@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
-<html lang="de" data-theme="dark">
+<html lang="de">
 <head>
+<script>document.documentElement.setAttribute('data-theme',localStorage.getItem('theme')||'dark');</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Klimabericht 2025 – Volt Fraktion Gießen</title>
@@ -165,6 +166,15 @@ header{position:sticky;top:0;z-index:300;background:var(--vp);border-bottom:3px 
 .kl-cta-btn:hover{background:#3b185a;border-color:#3b185a}
 @media(max-width:900px){.kl-links{display:none}}
 @media(max-width:500px){.kl-back-btn{font-size:12px;padding:.4rem .7rem}}
+
+/* ── SITE NAV: DARK MODE ── */
+[data-theme="dark"] .kl-nav{background:rgba(10,10,18,0.95);border-bottom-color:rgba(255,255,255,0.08)}
+[data-theme="dark"] .kl-link{color:var(--tx)}
+[data-theme="dark"] .kl-link:hover,[data-theme="dark"] .kl-link.active{color:#fff}
+[data-theme="dark"] .kl-theme-btn{border-color:rgba(255,255,255,0.15);color:var(--tx)}
+[data-theme="dark"] .kl-theme-btn:hover{background:rgba(255,255,255,0.08);border-color:var(--vy);color:#fff}
+[data-theme="dark"] .kl-back-btn{color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.3)}
+[data-theme="dark"] .kl-back-btn:hover{background:rgba(255,255,255,0.08);color:#fff;border-color:rgba(255,255,255,0.6)}
 
 /* FOOTER */
 .pf{background:#06060E;border-top:1px solid rgba(255,255,255,.06);padding:1.25rem 1.5rem;margin-top:2rem}
@@ -1594,10 +1604,15 @@ const SUN_SVG=`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 
 (function(){
   const btn=document.querySelector('.kl-theme-btn');
   if(!btn)return;
+  // Set initial icon based on theme loaded from localStorage
+  const initDark=document.documentElement.getAttribute('data-theme')!=='light';
+  btn.innerHTML=initDark?MOON_SVG:SUN_SVG;
+  btn.setAttribute('aria-label',initDark?'Helles Design aktivieren':'Dunkles Design aktivieren');
   btn.addEventListener('click',()=>{
     const html=document.documentElement;
     const goLight=html.getAttribute('data-theme')!=='light';
     html.setAttribute('data-theme',goLight?'light':'dark');
+    localStorage.setItem('theme',goLight?'light':'dark');
     btn.innerHTML=goLight?SUN_SVG:MOON_SVG;
     btn.setAttribute('aria-label',goLight?'Dunkles Design aktivieren':'Helles Design aktivieren');
     Object.assign(C,goLight?C_LIGHT:C_DARK);
@@ -1616,6 +1631,15 @@ const SUN_SVG=`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 
 // ══════════════════════════════════════════════════════════
 // START
 // ══════════════════════════════════════════════════════════
+// Sync chart defaults with theme loaded from localStorage
+if(document.documentElement.getAttribute('data-theme')==='light'){
+  Object.assign(C,C_LIGHT);
+  CARR_COLORS.splice(0,CARR_COLORS.length,C.ac,C.am,C.pi,C.te,C.re,C.vy);
+  grid.color='rgba(80,35,121,0.08)';
+  leg.labels.color='rgba(80,35,121,0.7)';
+  Chart.defaults.borderColor='rgba(80,35,121,0.1)';
+  Chart.defaults.color='rgba(80,35,121,0.7)';
+}
 try { lazyRender('overview'); } catch(e) { console.error('overview render error:',e); }
 </script>
 </body>
