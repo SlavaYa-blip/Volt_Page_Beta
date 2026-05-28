@@ -166,6 +166,7 @@
 .footer-logo-img {
     height: 48px;
     width: auto;
+    align-self: flex-start;
     filter: brightness(0) invert(1);
 }
 
